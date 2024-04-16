@@ -1,8 +1,25 @@
-# React + Vite
+# Website no âmbito da cadeira de IPM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Train With Me - IPM
 
-Currently, two official plugins are available:
+Este website utiliza o Next JS com Typescript e uma biblioteca MUI para os estilos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Está a ser desenvolvido como portofólio da cadeira, para postar os updates do Projeto final ao longo do tempo.
+
+## Como usar
+
+Clone do repositório
+
+Install it and run:
+
+```bash
+npm install
+npm run dev
+```
+
+Abre um site em localhost [http://localhost:3000](http://localhost:3000).
+
+Para mais detalhes sobre o [Next JS](https://nextjs.org/docs/getting-started/installation)
+
+Para mais detalhes sobre o [Material UI](https://mui.com/material-ui/)
+
