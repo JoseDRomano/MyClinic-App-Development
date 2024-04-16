@@ -8,4 +8,4 @@ const personSchema = mongoose.Schema(
 );
 
 
-export const Person = mongoose.model('Staff', personSchema);
+export const Staff = mongoose.model('Staff', personSchema);
