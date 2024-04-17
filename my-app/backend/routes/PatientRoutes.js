@@ -1,6 +1,6 @@
 
 import express from 'express';
-import { Staff } from '../models/StaffModel.js';
+import { Patient } from '../models/PatientModel.js';
 
 const router = express.Router();
 
@@ -8,9 +8,9 @@ router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const staff = await Staff.findById(id); 
+        const patient = await Patient.findById(id); 
 
-        return response.status(200).json(staff);
+        return response.status(200).json(patient);
     } catch (error) {
         console.log(error);
     }
@@ -18,17 +18,20 @@ router.get('/:id', async (request, response) => {
 
 router.post('/', async (request, response) => {
     try {
-        const newStaff = {
+        const newPatient = {
             name: request.body.name,
-            role: request.body.role,
             email: request.body.email,
             // TODO: hash password!
             password: request.body.password,
-            phoneNumber: request.body.phoneNumber
+            phoneNumber: request.body.phoneNumber,
+            citizenId: request.body.citizenId,
+            healthId: request.body.healthId,
+            sex: request.body.sex,
+            gender: request.body.gender,
         }
 
-        const staff = await Staff.create(newStaff);
-        return response.status(200).send(staff) ;
+        const patient = await Patient.create(newPatient);
+        return response.status(200).send(patient);
 
     } catch (error) {
         console.log(error);
