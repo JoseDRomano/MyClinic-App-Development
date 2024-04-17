@@ -10,6 +10,8 @@ const patientSchema = mongoose.Schema(
         healthId: {type: String, required: true},
         sex: {type: String, required: true},
         gender: {type: String, required: true},
+        birthDate: {type: String, required: true},
+        address: {type: String, required: true}
     }
 );
 

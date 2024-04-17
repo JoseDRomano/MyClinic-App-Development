@@ -24,11 +24,54 @@ router.post('/', async (request, response) => {
             email: request.body.email,
             // TODO: hash password!
             password: request.body.password,
-            phoneNumber: request.body.phoneNumber
+            phoneNumber: request.body.phoneNumber,
+            citizenId: request.body.citizenId,
+            healthId: request.body.healthId,
+            sex: request.body.sex,
+            gender: request.body.gender,
+            birthDate: request.body.birthDate,
+            address: request.body.address
         }
 
         const staff = await Staff.create(newStaff);
         return response.status(200).send(staff) ;
+
+    } catch (error) {
+        console.log(error);
+        response.status(500).send('Error: ' + error);
+    }
+});
+
+router.put('/:id', async (request, response) => {
+    try {
+        const newStaff = {
+            name: request.body.name,
+            role: request.body.role,
+            email: request.body.email,
+            // TODO: hash password!
+            password: request.body.password,
+            phoneNumber: request.body.phoneNumber,
+            citizenId: request.body.citizenId,
+            healthId: request.body.healthId,
+            sex: request.body.sex,
+            gender: request.body.gender,
+            birthDate: request.body.birthDate,
+            address: request.body.address
+        }
+        
+        const staff = await Staff.findByIdAndUpdate(request.params.id, newStaff);
+        return response.status(200).send(newStaff);
+
+    } catch (error) {
+        console.log(error);
+        response.status(500).send('Error: ' + error);
+    }
+});
+
+router.delete('/:id', async (request, response) => {
+    try {
+        const staff = await Staff.findByIdAndDelete(request.params.id);
+        return response.status(200).send(staff);
 
     } catch (error) {
         console.log(error);
