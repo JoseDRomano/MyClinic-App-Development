@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import {Box, Button, Link, Stack, TextField, Typography} from '@mui/material';
 import {useAuth} from 'src/hooks/use-auth';
 import {Layout as AuthLayout} from 'src/layouts/auth/layout';
-import {beige} from '../../theme/colors';
+import {info} from '../../theme/colors';
 
 const Page = () => {
     const router = useRouter();
@@ -127,7 +127,7 @@ const Page = () => {
                             {formik.errors.submit && (
                                 <Typography
                                     color="error"
-                                    sx={{mt: 3, backgroundColor: beige.main}}
+                                    sx={{mt: 3, backgroundColor: info.main}}
                                     variant="body2"
                                 >
                                     {formik.errors.submit}
@@ -136,7 +136,7 @@ const Page = () => {
                             <Button
                                 fullWidth
                                 size="large"
-                                sx={{mt: 3, backgroundColor: beige.main, '&:hover': {backgroundColor: beige.dark}}}
+                                sx={{mt: 3, backgroundColor: info.main, '&:hover': {backgroundColor: info.dark}}}
                                 type="submit"
                                 variant="contained">
                                 Continue
