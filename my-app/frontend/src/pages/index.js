@@ -2,7 +2,7 @@ import Head from "next/head";
 import {Box, Container, Divider, Grid} from "@mui/material";
 import {Layout as DashboardLayout} from "src/layouts/dashboard/layout";
 import {OverviewWidget} from "@/sections/overview/overview-widget";
-import {beige} from "../theme/colors";
+import {info} from "../theme/colors";
 import Calendar from ".//calendar";
 
 import {useEffect, useState} from "react"
@@ -46,7 +46,7 @@ const Page = () => {
                                 positive={true}
                                 sx={{
                                     height: "100%",
-                                    background: `linear-gradient(to bottom, ${beige.main}, black)`,
+                                    background: `linear-gradient(to bottom, ${info.main}, black)`,
                                 }}
                                 value={students.length}
                             />
@@ -57,7 +57,7 @@ const Page = () => {
                                 flexItem
                                 sx={{
                                     height: "100%", // Fill the height of the container
-                                    borderRight: '4px solid ' + beige.main, // Customize thickness and style here
+                                    borderRight: '4px solid ' + info.main, // Customize thickness and style here
                                     margin: "0 16px", // Adjust spacing as needed
                                 }}
                             />

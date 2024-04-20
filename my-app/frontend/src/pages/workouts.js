@@ -2,7 +2,7 @@ import { Box, Button, Container, Stack, Typography, Tooltip } from "@mui/materia
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { beige } from "../theme/colors";
+import { info } from "../theme/colors";
 import { useDialog } from "../contexts/dialog-context";
 import { AddWorkoutDialog } from "../sections/workouts/add-dialog";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ const WorkoutsPage = () => {
 
   const handleDeleteClick = (id) => () => {
     const deleteAction = () => {
-      fetch("/api/workouts", {
+      fetch("/api/appointments", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -55,49 +55,17 @@ const WorkoutsPage = () => {
       renderCell: (params) => params.value + " minutos",
     },
     {
-      field: "students",
-      headerName: "Paciente",
+      field: "staff",
+      headerName: "Médico/Técnico",
       width: 300,
-      renderCell: (params) => {
-        let x = params.value;
-        return x && x.length > 0 ? x.length + " - ( " + x.join(", ") + " )" : "";
-      },
+      renderCell: (params) => params.value
     },
     {
-      field: "exerciseList",
-      headerName: "Consulta",
-      width: "300",
+      field: "date",
+      headerName: "Data da Consulta",
+      width: "150",
       sortable: false,
-      renderCell: (params) => {
-        const formatExercise = (exercise) => {
-          return `${exercise.name} (${exercise.sets}x${exercise.reps})`;
-        };
-
-        let all = params.value
-          .map((x) => {
-            return `${formatExercise(x)}`;
-          })
-          .join(", ");
-
-        return (
-          <Tooltip
-            title={
-              <ul>
-                {params.value.map((ex, idx) => {
-                  return <li key={idx}>{formatExercise(ex)}</li>;
-                })}
-              </ul>
-            }
-          >
-            <span className="table-cell-trucate">{all}</span>
-          </Tooltip>
-        );
-      },
-    },
-    {
-      field: "createdAt",
-      headerName: "Data de Criação",
-      renderCell: (params) => formatCreatedDate(params.value),
+      renderCell: (params) => params.value
     },
     {
       field: "actions",
@@ -131,7 +99,7 @@ const WorkoutsPage = () => {
   useEffect(() => {
 
     async function fetchMyAPI() {
-      let response = await fetch("/api/workouts", {
+      let response = await fetch("/api/appointments", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -170,7 +138,7 @@ const WorkoutsPage = () => {
             startIcon={<PlusIcon />}
             variant="contained"
             sx={{
-              backgroundColor: beige.main,
+              backgroundColor: info.main,
             }}
             onClick={() => {
                 dialog.setDialogContent({

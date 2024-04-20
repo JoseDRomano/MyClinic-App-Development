@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Typography, { Stack } from "@mui/material";
 import { useEffect, useState } from "react";
-import { beige } from "../../theme/colors";
+import { info } from "../../theme/colors";
 import { useRouter } from "next/router";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -23,7 +23,7 @@ export const AddWorkoutHistoryDialog = () => {
   const dialog = useDialog();
   useEffect(() => {
     async function fetchMyAPI() {
-      let responseStudents = await fetch("/api/students", {
+      let responseStudents = await fetch("/api/equipments", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,36 +31,21 @@ export const AddWorkoutHistoryDialog = () => {
       });
       responseStudents = await responseStudents.json();
       setStudents(responseStudents);
-
-      let responseWorkouts = await fetch("/api/workouts", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      responseWorkouts = await responseWorkouts.json();
-      setWorkoutPlans(responseWorkouts);
     }
 
     fetchMyAPI();
-  }, []);
+  }, [dialog]);
 
   const formik = useFormik({
     initialValues: {
-      student: null,
-      workoutPlan: null,
-      localization: "",
-      duration: null,
-      submit: null,
+      eqName: "",
+      maintenance: "",
+      availability: "",
     },
     validationSchema: Yup.object().shape({
-      student: Yup.string().required("Aluno é obrigatório"),
-      workoutPlan: Yup.string().required("Plano de treino é obrigatório"),
-      localization: Yup.string().required("Localização é obrigatório"),
-      duration: Yup.number()
-        .required("Duração é obrigatório")
-        .integer("Duração é um número inteiro")
-        .positive("Tem de ser um número positivo"),
+      eqName: Yup.string().required("Nome do Equipamento é obrigatório"),
+      maintenance: Yup.date().required("Data de Manutenção é obrigatório"),
+      availability: Yup.boolean().required("Disponibilidade é obrigatório"),
     }),
 
     onSubmit: async (values, helpers) => {
@@ -70,7 +55,7 @@ export const AddWorkoutHistoryDialog = () => {
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
-        await fetch("/api/workoutHistory", {
+        await fetch("/api/equipments", {
           method: dialog.getType().type == "editwkh" ? "PUT" : "POST",
           headers: {
             "Content-Type": "application/json",
@@ -91,119 +76,67 @@ export const AddWorkoutHistoryDialog = () => {
 
   useEffect(() => {
     if (dialog.getType().type == "editwkh") {
-      formik.setFieldValue("student", dialog.getType().workout.student);
-      formik.setFieldValue("workoutPlan", dialog.getType().workout.workoutPlan);
-      formik.setFieldValue("localization", dialog.getType().workout.localization);
-      formik.setFieldValue("duration", dialog.getType().workout.duration);
+      formik.setFieldValue("eqName", dialog.getType().workout.eqName);
+      formik.setFieldValue("maintenance", dialog.getType().workout.maintenance);
+      formik.setFieldValue("availability", dialog.getType().workout.availability);
     } else {
-      formik.setFieldValue("student", null);
-      formik.setFieldValue("workoutPlan", "");
-      formik.setFieldValue("localization", "");
-      formik.setFieldValue("duration", null);
+      formik.setFieldValue("eqName", "");
+      formik.setFieldValue("maintenance", "");
+      formik.setFieldValue("availability", "");
     }
   }, [dialog]);
 
   return (
     <FormDialog>
-      <DialogTitle>Adicionar um novo registo de treino</DialogTitle>
+      <DialogTitle>Adicionar um novo equipamento</DialogTitle>
       <DialogContent>
         <form onSubmit={formik.handleSubmit}>
           <Stack spacing={2}>
-            <FormControl fullWidth>
-              <Autocomplete
-                id="student"
-                name="student"
-                options={students}
-                getOptionLabel={(option) => option.name}
-                onChange={(event, newValue) => {
-                  formik.values.student = newValue?.name || "";
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Aluno"
-                    onBlur={formik.handleBlur}
-                    error={!!(formik.touched.student && formik.errors.student)}
-                    helperText={formik.touched.student && formik.errors.student}
-                  />
-                )}
-                renderOption={(props, option, { selected }) => (
-                  <li {...props} key={props.id + Math.random()}>
-                    {selected ? <CheckBoxIcon style={{ color: "green", margin: "3px" }} /> : null}
-                    {option.name}
-                  </li>
-                )}
-              />
-            </FormControl>
-            <FormControl fullWidth>
-              <Autocomplete
-              id="workoutPlan"
-              name="workoutPlan"
-              options={workoutPlans}
-              getOptionLabel={(option) => option.name}
-              onChange={(event, newValue) => {
-                formik.values.workoutPlan = newValue?.name || "";
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Plano de treino"
-                  onBlur={formik.handleBlur}
-                  error={!!(formik.touched.workoutPlan && formik.errors.workoutPlan)}
-                  helperText={formik.touched.workoutPlan && formik.errors.workoutPlan}
-                />
-              )}
-              renderOption={(props, option, { selected }) => (
-                <li {...props} key={props.id + Math.random()}>
-                  {selected ? <CheckBoxIcon style={{ color: "green", margin: "3px" }} /> : null}
-                  {option.name}
-                </li>
-              )}
-                renderTags={(value) =>
-                  value.map((option, index) => (
-                    <Typography key={index} fontSize={14}>
-                      {option.name}
-                      {index == value.length - 1 ? "" : ","}
-                    </Typography>
-                  ))
-                }
-              />
-            </FormControl>
             <TextField
-              error={!!(formik.touched.localization && formik.errors.localization)}
+              error={!!(formik.touched.eqName && formik.errors.eqName)}
               fullWidth
-              helperText={formik.touched.localization && formik.errors.localization}
-              label="Localização"
-              name="localization"
+              helperText={formik.touched.eqName && formik.errors.eqName}
+              label="Nome do Equipamento"
+              name="eqName"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.localization}
+              value={formik.values.eqName}
             />
             <TextField
-              error={!!(formik.touched.duration && formik.errors.duration)}
+              error={!!(formik.touched.maintenance && formik.errors.maintenance)}
               fullWidth
-              helperText={formik.touched.duration && formik.errors.duration}
-              label="Duração"
-              name="duration"
+              helperText={formik.touched.maintenance && formik.errors.maintenance}
+              label="Data de Manutenção"
+              name="maintenance"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.duration}
-              type="number"
+              value={formik.values.maintenance}
+              type="date"
+            />
+            <TextField
+                error={!!(formik.touched.availability && formik.errors.availability)}
+                fullWidth
+                helperText={formik.touched.availability && formik.errors.availability}
+                label="Disponibilidade"
+                name="availability"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.availability}
             />
           </Stack>
           {formik.errors.submit && (
-            <Typography color="error" sx={{ mt: 3, backgroundColor: beige.main }} variant="body2">
+            <Typography color="error" sx={{ mt: 3, backgroundColor: info.main }} variant="body2">
               {formik.errors.submit}
             </Typography>
           )}
           <Button
             fullWidth
             size="large"
-            sx={{ mt: 3, backgroundColor: beige.main, "&:hover": { backgroundColor: beige.dark } }}
+            sx={{ mt: 3, backgroundColor: info.main, "&:hover": { backgroundColor: info.dark } }}
             type="submit"
             variant="contained"
           >
-            Adicionar treino
+            Adicionar equipamento
           </Button>
         </form>
       </DialogContent>

@@ -11,15 +11,15 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             addExercise(req)
-            res.status(200).json({message: "Consulta Criada"})
+            res.status(200).json({message: "Check-In Adicionado"})
             break
         case 'PUT':
             updateExercise(req)
-            res.status(200).json({message: "Consulta Atualizada"})
+            res.status(200).json({message: "Check-In Atualizado"})
             break;
         case 'DELETE':
             deleteExercise(req)
-            res.status(200).json({message: "Consulta Eliminada"})
+            res.status(200).json({message: "Check-In Eliminado"})
             break;
 
     }
@@ -31,9 +31,9 @@ async function addExercise(req) {
 }
 
 async function updateExercise(req) {
-    const {id, name, force, primaryMuscles, instructions,category, photo} = req.body;
+    const {id, name, pacient, date} = req.body;
     await connectMongoDB();
-    await Exercises.findByIdAndUpdate({_id: id}, {name, force, primaryMuscles, instructions,category, photo});
+    await Exercises.findByIdAndUpdate({_id: id}, {name, pacient, date});
 }
 
 async function deleteExercise(req){

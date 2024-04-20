@@ -5,6 +5,7 @@ import {SvgIcon} from '@mui/material';
 import CircleStack from '@heroicons/react/24/solid/CircleStackIcon';
 import ChartBarSquareIcon from '@heroicons/react/24/solid/ChartBarSquareIcon';
 import CalendarDaysIcon from '@heroicons/react/24/solid/CalendarDaysIcon'
+import {CpuChipIcon, UsersIcon} from "@heroicons/react/20/solid";
 //import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 
 export const items = [
@@ -27,11 +28,11 @@ export const items = [
         )
     },
     {
-        title: 'Histórico de consultas',
+        title: 'Equipamentos',
         path: '/workouts-history',
         icon: (
             <SvgIcon fontSize="small">
-                <CalendarDaysIcon/>
+                <CpuChipIcon/>
             </SvgIcon>
         )
     },
@@ -45,7 +46,7 @@ export const items = [
         )
     },
     {
-        title: 'Bibilioteca de Check-Ins',
+        title: 'Check-Ins',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">
@@ -54,8 +55,26 @@ export const items = [
         )
     },
     {
-        title: 'Estatísticas',
+        title: 'Staff',
         path: '/stats',
+        icon: (
+            <SvgIcon fontSize="small">
+                <UsersIcon/>
+            </SvgIcon>
+        )
+    },
+    {
+        title: 'SUPOSTO GBO PAGE',
+        path: '/clone1',
+        icon: (
+            <SvgIcon fontSize="small">
+                <ChartBarSquareIcon/>
+            </SvgIcon>
+        )
+    },
+    {
+        title: 'SUPOSTO PATIENT PAGE',
+        path: '/clone2',
         icon: (
             <SvgIcon fontSize="small">
                 <ChartBarSquareIcon/>

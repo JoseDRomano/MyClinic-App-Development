@@ -10,7 +10,7 @@ import {
     TextField,
     Unstable_Grid2 as Grid
 } from '@mui/material';
-import {beige} from '../../theme/colors';
+import {info} from '../../theme/colors';
 
 const states = [
     {
@@ -161,7 +161,7 @@ export const AccountProfileDetails = () => {
                 <CardActions sx={{justifyContent: 'flex-end'}}>
                     <Button variant="contained"
                             sx={{
-                                backgroundColor: beige.main,
+                                backgroundColor: info.main,
                             }}>
                         Save details
                     </Button>

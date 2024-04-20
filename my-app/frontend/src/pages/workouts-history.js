@@ -3,7 +3,7 @@ import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import { useEffect, useState } from "react";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { beige } from "../theme/colors";
+import { info } from "../theme/colors";
 import { useDialog } from "../contexts/dialog-context";
 import { AddWorkoutHistoryDialog } from "../sections/workouts-history/add-dialog";
 import { formatCreatedDate } from "@/utils/format";
@@ -19,7 +19,7 @@ const WorkoutHistoryPage = () => {
   useEffect(() => {
 
     async function fetchMyAPI() {
-      let response = await fetch("/api/workoutHistory", {
+      let response = await fetch("/api/equipments", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const WorkoutHistoryPage = () => {
 
   const handleDeleteClick = (id) => () => {
     const deleteAction = () => {
-      fetch("/api/workoutHistory", {
+      fetch("/api/equipments", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -49,11 +49,11 @@ const WorkoutHistoryPage = () => {
     };
 
     dialog.setDialogContent({
-      title: "Eliminar uma consulta",
+      title: "Eliminar um equipamento",
       type: "confirmwkh",
       content:
-        "Tem a certeza que quer eliminar a consulta realizada no dia " +
-        formatCreatedDate(workoutHistory.find((x) => x.id == id).createdAt) +
+        "Tem a certeza que quer eliminar o equipamento " +
+        workoutHistory.find((x) => x.id == id) +
         "?",
       action: deleteAction,
     });
@@ -62,7 +62,7 @@ const WorkoutHistoryPage = () => {
   const handleEditClick = (id) => () => {
     //set popup content
     dialog.setDialogContent({
-      title: "Editar uma consulta",
+      title: "Editar um equipamento",
       type: "editwkh",
       workout: workoutHistory.find((x) => x.id == id),
     });
@@ -75,10 +75,9 @@ const WorkoutHistoryPage = () => {
       width: 150,
       renderCell: (params) => formatCreatedDate(params.value),
     },
-    { field: "workoutPlan", headerName: "Consulta", width: 160 },
-    { field: "student", headerName: "Paciente", width: 150 },
-    { field: "duration", headerName: "Duração", width: 150 },
-    { field: "localization", headerName: "Localização", width: 150 },
+    { field: "eqName", headerName: "Nome do Equipamento", width: 160 },
+    { field: "maintenance", headerName: "Última manutenção", width: 150 },
+    { field: "availability", headerName: "Disponibilidade", width: 150 },
     {
       field: "actions",
       type: "actions",
@@ -121,7 +120,7 @@ const WorkoutHistoryPage = () => {
         <Container maxWidth={false}>
           <Stack direction="row" justifyContent="space-between" mb={3}>
             <Typography color="textPrimary" variant="h4">
-              Históricos de Consultas
+              Equipamentos
             </Typography>
           </Stack>
           <br />
@@ -129,16 +128,16 @@ const WorkoutHistoryPage = () => {
             startIcon={<PlusIcon />}
             variant="contained"
             sx={{
-              backgroundColor: beige.main,
+              backgroundColor: info.main,
             }}
             onClick={() => {
                 dialog.setDialogContent({
-                    title: "Adicionar uma nova consulta",
+                    title: "Adicionar um novo equipamento",
                     type: "createwkh",
                 })
             }}
           >
-            Adicionar registo de consulta
+            Adicionar equipamento
           </Button>
         </Container>
         <br />

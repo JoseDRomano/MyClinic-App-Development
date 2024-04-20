@@ -3,7 +3,7 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import {Layout as DashboardLayout} from '@/layouts/dashboard/layout';
 import {useEffect, useState} from 'react';
 import {DataGrid, GridActionsCellItem} from '@mui/x-data-grid';
-import {beige} from '../theme/colors';
+import {info} from '../theme/colors';
 import {useDialog} from "../contexts/dialog-context"
 import {AddUserDialog} from '../sections/students/add-dialog';
 import {useRouter} from 'next/router';
@@ -155,7 +155,7 @@ const StudentsPage = () => {
                     startIcon={<PlusIcon/>}
                     variant="contained"
                     sx={{
-                        backgroundColor: beige.main,
+                        backgroundColor: info.main,
                     }}
                     onClick={() => {
                         dialog.setDialogContent({
