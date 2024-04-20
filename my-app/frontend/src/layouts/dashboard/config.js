@@ -45,7 +45,7 @@ export const items = [
         )
     },
     {
-        title: 'Bibilioteca de consultas',
+        title: 'Bibilioteca de Check-Ins',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">

@@ -75,13 +75,15 @@ const StudentsPage = () => {
       
 
     const columns = [
-        {field: 'photo', headerName: 'Avatar', width: 100, renderCell: (params) => <Avatar src={params.value}/>},
         {field: 'name', headerName: 'Nome', width: 200},
-        {field: 'email', headerName: 'Email', width: 200},
-        {field: 'objective', headerName: 'Objetivo', width: 200},
-        {field: 'weight', headerName: 'Peso (kg)', width: 100},
-        {field: 'height', headerName: 'Altura (cm)', width: 100},
-        {field: 'bodyFat', headerName: 'Massa Gorda (%)', width: 130},
+        {field: 'email', headerName: 'Email', width: 130},
+        {field: 'phoneNumber', headerName: 'Contacto Telefónico', width: 100},
+        {field: 'citizenId', headerName: 'Nº Cartão de Cidadão', width: 100},
+        {field: 'healthId', headerName: 'Nº de Utente', width: 100},
+        {field: 'sex', headerName: 'Sexo', width: 100},
+        {field: 'gender', headerName: 'Género', width: 100},
+        {field: 'birthDate', headerName: 'Data de Nascimento', width: 130},
+        {field: 'address', headerName: 'Morada', width: 200},
         {
             field: 'createdAt',
             headerName: 'Data de Criação',

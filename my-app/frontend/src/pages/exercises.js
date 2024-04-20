@@ -97,7 +97,7 @@ const ExercisesPage = () => {
         />
       ),
     },
-    { field: "name", headerName: "Exercício", width: 150 },
+    { field: "name", headerName: "Check-In", width: 150 },
     {
       field: "force",
       headerName: "Força",
