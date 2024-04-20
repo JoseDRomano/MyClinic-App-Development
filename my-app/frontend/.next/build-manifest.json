@@ -12,6 +12,11 @@
   ],
   "rootMainFiles": [],
   "pages": {
+    "/404": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/404.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -22,10 +27,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/students": [
+    "/clone1": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/students.js"
+      "static/chunks/pages/clone1.js"
+    ],
+    "/clone2": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/clone2.js"
+    ],
+    "/stats": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/stats.js"
     ]
   },
   "ampFirstPages": []

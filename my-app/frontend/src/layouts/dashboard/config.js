@@ -62,5 +62,23 @@ export const items = [
             </SvgIcon>
         )
     },
+    {
+        title: 'SUPOSTO GBO PAGE',
+        path: '/clone1',
+        icon: (
+            <SvgIcon fontSize="small">
+                <ChartBarSquareIcon/>
+            </SvgIcon>
+        )
+    },
+    {
+        title: 'SUPOSTO PATIENT PAGE',
+        path: '/clone2',
+        icon: (
+            <SvgIcon fontSize="small">
+                <ChartBarSquareIcon/>
+            </SvgIcon>
+        )
+    },
 
 ];

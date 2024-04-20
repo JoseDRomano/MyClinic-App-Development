@@ -68,6 +68,14 @@ export const beige = withAlphas({
     darkest: '#634C32',
     contrastText: '#000000'
 });
+export const teal = {
+    lightest: '#E0F2F1',
+    light: '#80CBC4',
+    main: '#009688',
+    dark: '#00796B',
+    darkest: '#004D40',
+    contrastText: '#FFFFFF'
+};
 
 export const black = withAlphas({
     lightest: '#F2F2F2',
