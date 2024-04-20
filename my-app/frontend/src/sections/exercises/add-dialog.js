@@ -57,7 +57,8 @@ export const AddExerciseDialog = () => {
             address: Yup.string().required("Morada é necessário"),
             entry_hour: Yup.string().required("Hora de entrada é necessário"),
             symptoms: Yup.string().required("É necessário adicionar sintomas"),
-            priority: Yup.string().required("Necessário adicionar prioridade")
+            priority: Yup.string().required("Necessário adicionar prioridade"),
+            state: Yup.string().required("É necessário adicionar um estado")
         }),
 
         onSubmit: async (values, helpers) => {
@@ -89,44 +90,148 @@ export const AddExerciseDialog = () => {
 
     useEffect(() => {
         if (dialog.getType().type == "editstd") {
-            formik.setFieldValue("name", dialog.getType().user.name);
-            formik.setFieldValue("pacient", dialog.getType().user.pacient);
-            formik.setFieldValue("date", dialog.getType().user.date);
+            formik.setFieldValue("patient_name", dialog.getType().user.patient_name);
+            formik.setFieldValue("citizenId", dialog.getType().user.citizenId);
+            formik.setFieldValue("healthId", dialog.getType().user.healthId);
+            formik.setFieldValue("sex", dialog.getType().user.sex);
+            formik.setFieldValue("gender", dialog.getType().user.gender);
+            formik.setFieldValue("birthDate", dialog.getType().user.birthDate);
+            formik.setFieldValue("address", dialog.getType().user.address);
+            formik.setFieldValue("entry_hour", dialog.getType().user.entry_hour);
+            formik.setFieldValue("symptoms", dialog.getType().user.symptoms);
+            formik.setFieldValue("priority", dialog.getType().user.priority);
+            formik.setFieldValue("state", dialog.getType().user.state);
         } else {
-            formik.setFieldValue("name", "");
-            formik.setFieldValue("pacient", "");
-            formik.setFieldValue("date", "");
+            formik.setFieldValue("patient_name", "");
+            formik.setFieldValue("citizenId", "");
+            formik.setFieldValue("healthId", "");
+            formik.setFieldValue("sex", "");
+            formik.setFieldValue("gender", "");
+            formik.setFieldValue("birthDate", "");
+            formik.setFieldValue("address", "");
+            formik.setFieldValue("entry_hour", "");
+            formik.setFieldValue("symptoms", "");
+            formik.setFieldValue("priority", "");
+            formik.setFieldValue("state", "");
         }
     }, [dialog]);
 
     return (
         <FormDialog>
-            <DialogTitle>Adicionar um novo exercício</DialogTitle>
+            <DialogTitle>Adicionar um novo Check-In</DialogTitle>
             <DialogContent>
                 <form onSubmit={formik.handleSubmit}>
                     <Stack spacing={2}>
                       <TextField
-                        error={!!(formik.touched.pacient && formik.errors.pacient)}
+                        error={!!(formik.touched.patient_name && formik.errors.patient_name)}
                         fullWidth
-                        helperText={formik.touched.pacient && formik.errors.pacient}
+                        helperText={formik.touched.patient_name && formik.errors.patient_name}
                         label="Paciente"
                         name="pacient"
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
-                        value={formik.values.pacient}
+                        value={formik.values.patient_name}
                     />
-                    <TextField
-                        error={!!(formik.touched.date && formik.errors.date)}
+                        <TextField
+                        error={!!(formik.touched.citizenId && formik.errors.citizenId)}
                         fullWidth
-                        helperText={formik.touched.date && formik.errors.date}
-                        label="Data de Adesão"
-                        name="date"
-                        type="date"
+                        helperText={formik.touched.citizenId && formik.errors.citizenId}
+                        label="Nº Cartão de Cidadão"
+                        name="citizenId"
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
-                        value={formik.values.date}
+                        value={formik.values.citizenId}
                     />
-
+                        <TextField
+                            error={!!(formik.touched.healthId && formik.errors.healthId)}
+                            fullWidth
+                            helperText={formik.touched.healthId && formik.errors.healthId}
+                            label="Nº de Utente"
+                            name="healthId"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.healthId}
+                        />
+                        <TextField
+                        error={!!(formik.touched.sex && formik.errors.sex)}
+                        fullWidth
+                        helperText={formik.touched.sex && formik.errors.sex}
+                        label="Sexo"
+                        name="sex"
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
+                        value={formik.values.sex}
+                    />
+                        <TextField
+                        error={!!(formik.touched.gender && formik.errors.gender)}
+                        fullWidth
+                        helperText={formik.touched.gender && formik.errors.gender}
+                        label="Género"
+                        name="gender"
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
+                        value={formik.values.gender}
+                    />
+                        <TextField
+                            error={!!(formik.touched.birthDate && formik.errors.birthDate)}
+                            fullWidth
+                            helperText={formik.touched.birthDate && formik.errors.birthDate}
+                            label="Data de Nascimento"
+                            name="birthDate"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.birthDate}
+                        />
+                        <TextField
+                            error={!!(formik.touched.address && formik.errors.address)}
+                            fullWidth
+                            helperText={formik.touched.address && formik.errors.address}
+                            label="Morada"
+                            name="address"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.address}
+                        />
+                        <TextField
+                            error={!!(formik.touched.entry_hour && formik.errors.entry_hour)}
+                            fullWidth
+                            helperText={formik.touched.entry_hour && formik.errors.entry_hour}
+                            label="Hora de Entrada"
+                            name="enrty_hour"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.entry_hour}
+                        />
+                        <TextField
+                            error={!!(formik.touched.symptoms && formik.errors.symptoms)}
+                            fullWidth
+                            helperText={formik.touched.symptoms && formik.errors.symptoms}
+                            label="Sintomas"
+                            name="symptoms"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.symptoms}
+                        />
+                        <TextField
+                            error={!!(formik.touched.priority && formik.errors.priority)}
+                            fullWidth
+                            helperText={formik.touched.priority && formik.errors.priority}
+                            label="Prioridade"
+                            name="priority"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.priority}
+                        />
+                        <TextField
+                            error={!!(formik.touched.state && formik.errors.state)}
+                            fullWidth
+                            helperText={formik.touched.state && formik.errors.state}
+                            label="Estado"
+                            name="state"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.state}
+                        />
                     </Stack>
                     {formik.errors.submit && (
                         <Typography

@@ -12,16 +12,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
-    "/404": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/404.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -37,30 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/clone1.js"
     ],
-    "/exercises": [
+    "/clone2": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/exercises.js"
-    ],
-    "/stats": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/stats.js"
-    ],
-    "/students": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/students.js"
-    ],
-    "/workouts": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/workouts.js"
-    ],
-    "/workouts-history": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/workouts-history.js"
+      "static/chunks/pages/clone2.js"
     ]
   },
   "ampFirstPages": []
