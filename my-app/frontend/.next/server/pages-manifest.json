@@ -2,9 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/exercises": "pages/exercises.js",
   "/workouts": "pages/workouts.js",
   "/students": "pages/students.js",
-  "/api/workouts": "pages/api/workouts.js",
-  "/api/students": "pages/api/students.js"
+  "/clone1": "pages/clone1.js"
 }
