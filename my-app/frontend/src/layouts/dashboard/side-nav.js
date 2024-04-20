@@ -6,7 +6,7 @@ import {Logo} from 'src/components/logo';
 import {Scrollbar} from 'src/components/scrollbar';
 import {items} from './config';
 import {SideNavItem} from './side-nav-item';
-import {beige} from '../../theme/colors';
+import {info} from '../../theme/colors';
 
 export const SideNav = (props) => {
     const {open, onClose} = props;
@@ -48,7 +48,7 @@ export const SideNav = (props) => {
                         <Logo/>
                     </Box>
                 </Box>
-                <Divider sx={{borderColor: beige.main}}/>
+                <Divider sx={{borderColor: info.main}}/>
                 <Box
                     component="nav"
                     sx={{
@@ -96,7 +96,7 @@ export const SideNav = (props) => {
                 PaperProps={{
                     sx: {
                         backgroundColor: 'neutral.900',
-                        color: 'beige.main',
+                        color: 'info.main',
                         width: 280
                     }
                 }}

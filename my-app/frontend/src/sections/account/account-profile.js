@@ -1,5 +1,5 @@
 import {Avatar, Box, Button, Card, CardActions, CardContent, Divider, Typography} from '@mui/material';
-import {beige} from '../../theme/colors';
+import {info} from '../../theme/colors';
 
 const user = {
     avatar: '/assets/avatars/avatar-joaquim-alberto.png',
@@ -55,7 +55,7 @@ export const AccountProfile = () => (
                 fullWidth
                 variant="text"
                 sx={{
-                    color: beige.main,
+                    color: info.main,
                 }}
             >
                 Upload picture

@@ -3,7 +3,7 @@ import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import Image from "next/image";
-import { beige } from "../theme/colors";
+import { info } from "../theme/colors";
 import { useDialog } from "../contexts/dialog-context";
 import { AddExerciseDialog } from "../sections/exercises/add-dialog";
 import EditIcon from "@mui/icons-material/Edit";
@@ -81,44 +81,9 @@ const ExercisesPage = () => {
   };
 
   const columns = [
-    {
-      field: "photo",
-      headerName: "Foto",
-      width: 95,
-      sortable: false,
-      renderCell: (params) => (
-        <Image
-          onClick={() => (params?.value?.length > 0 ? handleImage(params.value[0]) : "")}
-          alt={params?.value?.length > 0 ? params?.value[0] : "no-photo"}
-          style={{ borderRadius: "10px" }}
-          height={75}
-          width={75}
-          src={params?.value?.length > 0 ? params.value[0] : "/no-photo.png"}
-        />
-      ),
-    },
     { field: "name", headerName: "Check-In", width: 150 },
-    {
-      field: "force",
-      headerName: "Força",
-      width: 130,
-      sortingOrder: ["desc", "asc"],
-      renderCell: (params) => (params.value ? capitalizeFirst(params.value) : ""),
-    },
-    {
-      field: "primaryMuscles",
-      headerName: "Músculo Alvo",
-      width: 130,
-      sortingOrder: ["desc", "asc"],
-      renderCell: (params) => (params.value ? capitalizeFirst(params.value[0]) : ""),
-    },
-    {
-      field: "category",
-      headerName: "Categoria",
-      width: 130,
-      sortingOrder: ["desc", "asc"],
-      renderCell: (params) => (params.value ? capitalizeFirst(params.value) : ""),
-    },
+    { field: "pacient", headerName: "Paciente", width: 200 },
+    { field: "date", headerName: "Data de Entrada", width: 100 },
     {
       field: "actions",
       type: "actions",
@@ -169,7 +134,7 @@ const ExercisesPage = () => {
             startIcon={<PlusIcon />}
             variant="contained"
             sx={{
-              backgroundColor: beige.main,
+              backgroundColor: info.main,
             }}
             onClick={() => {
               dialog.openDialog();

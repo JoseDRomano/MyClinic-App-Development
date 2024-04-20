@@ -11,31 +11,31 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             addWorkoutHistory(req)
-            res.status(200).json({message: "Histórico de Consulta Adicionada"})
+            res.status(200).json({message: "Equipamento Adicionado"})
             break
         case 'PUT':
             updateWorkoutHistory(req)
-            res.status(200).json({message: "Consulta Atualizada"})
+            res.status(200).json({message: "Equipamento Atualizado"})
             break;
         case 'DELETE':
             deleteWorkoutHistory(req)
-            res.status(200).json({message: "Histórico Eliminado"})
+            res.status(200).json({message: "Equipamento Eliminado"})
             break;
 
     }
 }
 
 async function addWorkoutHistory(req) {
-    const {workoutPlan, date, student, duration, localization} = await req.body;
+    const {eqName, maintenance, availability} = await req.body;
     await connectMongoDB();
-    await WorkoutHistory.create({workoutPlan,date, student,duration, localization});
+    await WorkoutHistory.create({eqName, maintenance, availability});
 }
 
 
 async function updateWorkoutHistory (req) {
-    const {id, workoutPlan, date, student, duration, localization} = await req.body;
+    const {id, eqName, maintenance, availability} = await req.body;
     await connectMongoDB();
-    await WorkoutHistory.findByIdAndUpdate({_id: id}, {workoutPlan, date, student, duration, localization});
+    await WorkoutHistory.findByIdAndUpdate({_id: id}, {eqName, maintenance, availability});
 }
 
 async function deleteWorkoutHistory(req){

@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Typography, { Stack } from "@mui/material";
 import { useRouter } from "next/router";
-import { beige } from "../../theme/colors";
+import { info } from "../../theme/colors";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -228,14 +228,14 @@ export const AddUserDialog = () => {
             />
           </Stack>
           {formik.errors.submit && (
-            <Typography color="error" sx={{ mt: 3, backgroundColor: beige.main }} variant="body2">
+            <Typography color="error" sx={{ mt: 3, backgroundColor: info.main }} variant="body2">
               {formik.errors.submit}
             </Typography>
           )}
           <Button
             fullWidth
             size="large"
-            sx={{ mt: 3, backgroundColor: beige.main, "&:hover": { backgroundColor: beige.dark } }}
+            sx={{ mt: 3, backgroundColor: info.main, "&:hover": { backgroundColor: info.dark } }}
             type="submit"
             variant="contained"
           >

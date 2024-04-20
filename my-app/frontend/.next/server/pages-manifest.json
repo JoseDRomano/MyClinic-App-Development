@@ -1,6 +1,12 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/students": "pages/students.js"
+  "/_document": "pages/_document.js",
+  "/workouts": "pages/workouts.js",
+  "/404": "pages/404.js",
+  "/api/students": "pages/api/students.js",
+  "/students": "pages/students.js",
+  "/api/workouts": "pages/api/workouts.js",
+  "/": "pages/index.js",
+  "/clone1": "pages/clone1.js"
 }

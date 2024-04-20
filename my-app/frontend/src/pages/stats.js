@@ -1,115 +1,164 @@
 import Head from "next/head";
-import {Box, Container, Grid, Typography} from "@mui/material";
+import {Box, Button, Container, Grid, Stack, Typography} from "@mui/material";
 import {Layout as DashboardLayout} from "src/layouts/dashboard/layout";
 import {OverviewDB} from "src/sections/overview/overview-db";
 import InfoIcon from "@mui/icons-material/Info";
 import {OverviewTraffic} from "src/sections/overview/overview-traffic";
+import {useEffect, useState} from "react";
+import {useDialog} from "@/contexts/dialog-context";
+import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
+import {ConfirmDialog} from "@/sections/students/confirm-dialog";
+import {AddWorkoutDialog} from "@/sections/workouts/add-dialog";
+import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
+import {info} from "@/theme/colors";
 
 const now = new Date();
 
-const Stats = () => (
+const Stats = () => {
+    const [stats, setStats] = useState([]);
+
+    const dialog = useDialog();
+
+    const handleDeleteClick = (id) => () => {
+        const deleteAction = () => {
+            fetch("/api/staff", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id }),
+            });
+            setStats(stats.filter((s) => s.id !== id));
+        };
+
+        dialog.setDialogContent({
+            title: "Eliminar um staff",
+            type: "confirmwk",
+            content:
+                "Tem a certeza que quer eliminar o staff " + stats.find((x) => x.id == id).name + "?",
+            action: deleteAction,
+        });
+    };
+
+    const handleEditClick = (id) => () => {
+        //set popup content
+        dialog.setDialogContent({
+            title: "Editar um staff",
+            type: "editwk",
+            workout: stats.find((x) => x.id == id),
+        });
+    };
+
+    const columns = [
+        { field: "name", headerName: "Nome do Técnico", width: 250 },
+        {
+            field: "joinDate",
+            headerName: "Data de Adesão",
+            width: 150,
+            renderCell: (params) => params.value + "semanas",
+        },
+        {
+            field: "job",
+            headerName: "Profissão",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "actions",
+            type: "actions",
+            headerName: "Editar/Remover",
+            width: 150,
+            cellClassName: "actions",
+            getActions: ({ id }) => {
+                return [
+                    <GridActionsCellItem
+                        key={1}
+                        icon={<EditIcon />}
+                        label="Cancel"
+                        className="textPrimary"
+                        onClick={handleEditClick(id)}
+                        color="inherit"
+                    />,
+                    <GridActionsCellItem
+                        key={1}
+                        icon={<DeleteIcon />}
+                        label="Cancel"
+                        className="textPrimary"
+                        onClick={handleDeleteClick(id)}
+                        color="inherit"
+                    />,
+                ];
+            },
+        },
+    ];
+
+    useEffect(() => {
+
+        async function fetchMyAPI() {
+            let response = await fetch("/api/staff", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            response = await response.json();
+
+            response.map((r) => {
+                r.id = r._id;
+            });
+            setStats(response);
+        }
+
+        fetchMyAPI();
+    }, []);
+
+return (
     <>
-        <Head>
-            <title>Estatísticas | My Clinic</title>
-        </Head>
+        {dialog.getType().type == "confirmwk" ? <ConfirmDialog /> : <AddWorkoutDialog />}
+
         <Box
-            component="main"
             sx={{
-                flexGrow: 1,
-                py: 20,
+                backgroundColor: "background.default",
+                minHeight: "100%",
+                py: 8,
             }}
         >
+            <Container maxWidth={false}>
+                <Stack direction="row" justifyContent="space-between" mb={3}>
+                    <Typography color="textPrimary" variant="h4">
+                        Staff
+                    </Typography>
+                </Stack>
+                <br />
+                <Button
+                    startIcon={<PlusIcon />}
+                    variant="contained"
+                    sx={{
+                        backgroundColor: info.main,
+                    }}
+                    onClick={() => {
+                        dialog.setDialogContent({
+                            title: "Adicionar um novo Profissional",
+                            type: "createwk",
+                        })
+                    }}
+                >
+                    Adicionar Profissional
+                </Button>
+            </Container>
+            <br />
             <Container maxWidth="xl">
-                <Grid container spacing={3}>
-                    {/* First Text Box */}
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Box
-                            sx={{
-                                bgcolor: "plum",
-                                color: "white",
-                                p: 1,
-                                borderRadius: 4,
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Data de adesão</Typography>
-                            <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">18-11-2023</Typography>
-                            </Box>
-                        </Box>
-                    </Grid>
-
-                    {/* Second Text Box */}
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Box
-                            sx={{
-                                bgcolor: "lightgreen",
-                                color: "white",
-                                p: 1,
-                                borderRadius: 4,
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Número Consultas</Typography>
-                            <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">222</Typography>
-                            </Box>
-                        </Box>
-                    </Grid>
-
-                    {/* Third Text Box */}
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Box
-                            sx={{
-                                bgcolor: "skyblue",
-                                color: "white",
-                                p: 1,
-                                borderRadius: 4,
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Pacientes atualmente</Typography>
-                            <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">23</Typography>
-                            </Box>
-                        </Box>
-                    </Grid>
-
-                    {/* OverviewDB Component */}
-                    <Grid item xs={12} lg={6} sx={{display: 'flex', justifyContent: 'center'}}>
-                        <Box sx={{width: '100%', mt: 3,}}>
-                            <OverviewDB
-                                chartSeries={[
-                                    {name: "This year", data: [18, 16, 15, 15, 13, 14, 10, 5, 25, 22, 22, 20]},
-                                    {name: "Last year", data: [12, 11, 14, 6, 12, 9, 9, 11, 4, 12, 13, 23]},
-                                ]}
-                                sx={{height: "100%"}}
-                            />
-                        </Box>
-                    </Grid>
-
-                    {/* OverviewTraffic Component */}
-                    <Grid item xs={12} lg={6} sx={{display: 'flex', justifyContent: 'center'}}>
-                        <Box sx={{width: '100%', mt: 3}}>
-                            <OverviewTraffic
-                                chartSeries={[80, 5, 15]}
-                                labels={['Positivo', 'Neutro', 'Negativo']}
-                                sx={{height: '100%'}}
-                            />
-                        </Box>
-                    </Grid>
-                </Grid>
+                <Stack spacing={3}>
+                    <DataGrid rows={stats} columns={columns} pageSizeOptions={[5, 10]} />
+                </Stack>
             </Container>
         </Box>
     </>
 );
+};
 
-Stats.getLayout = (stats) => <DashboardLayout>{stats}</DashboardLayout>;
+Stats.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Stats;
