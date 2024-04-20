@@ -29,7 +29,7 @@ const WorkoutsPage = () => {
     };
 
     dialog.setDialogContent({
-      title: "Eliminar um treino",
+      title: "Eliminar uma consulta",
       type: "confirmwk",
       content:
         "Tem a certeza que quer eliminar o treino " + workouts.find((x) => x.id == id).name + "?",
@@ -40,14 +40,14 @@ const WorkoutsPage = () => {
   const handleEditClick = (id) => () => {
     //set popup content
     dialog.setDialogContent({
-      title: "Editar um treino",
+      title: "Editar uma consulta",
       type: "editwk",
       workout: workouts.find((x) => x.id == id),
     });
   };
 
   const columns = [
-    { field: "name", headerName: "Nome do Plano de Treino", width: 250 },
+    { field: "name", headerName: "Nome da Consulta", width: 250 },
     {
       field: "duration",
       headerName: "Duração",
@@ -56,7 +56,7 @@ const WorkoutsPage = () => {
     },
     {
       field: "students",
-      headerName: "Alunos",
+      headerName: "Paciente",
       width: 300,
       renderCell: (params) => {
         let x = params.value;
@@ -174,12 +174,12 @@ const WorkoutsPage = () => {
             }}
             onClick={() => {
                 dialog.setDialogContent({
-                    title: "Adicionar um novo treino",
+                    title: "Adicionar uma nova Consulta",
                     type: "createwk",
                 })
             }}
           >
-            Adicionar planos de treino
+            Adicionar consultas
           </Button>
         </Container>
         <br />

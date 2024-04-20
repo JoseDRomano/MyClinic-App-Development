@@ -18,7 +18,7 @@ export const items = [
         )
     },
     {
-        title: 'Planos de treino',
+        title: 'Consultas',
         path: '/workouts',
         icon: (
             <SvgIcon fontSize="small">
@@ -27,7 +27,7 @@ export const items = [
         )
     },
     {
-        title: 'Histórico de treinos',
+        title: 'Histórico de consultas',
         path: '/workouts-history',
         icon: (
             <SvgIcon fontSize="small">
@@ -36,7 +36,7 @@ export const items = [
         )
     },
     {
-        title: 'Alunos',
+        title: 'Pacientes',
         path: '/students',
         icon: (
             <SvgIcon fontSize="small">
@@ -45,7 +45,7 @@ export const items = [
         )
     },
     {
-        title: 'Bibilioteca de exercícios',
+        title: 'Bibilioteca de consultas',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">

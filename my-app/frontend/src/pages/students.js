@@ -56,9 +56,9 @@ const StudentsPage = () => {
 
 
         dialog.setDialogContent({
-            title: "Eliminar um aluno",
+            title: "Eliminar um paciente",
             type: "confirmstd",
-            content: "Tem a certeza que quer eliminar o aluno " + students.find((x)=>x.id == id).name + "?",
+            content: "Tem a certeza que quer eliminar o paciente " + students.find((x)=>x.id == id).name + "?",
             action: deleteAction
         })
       };
@@ -66,7 +66,7 @@ const StudentsPage = () => {
       const handleEditClick = (id) => () =>{
         //set popup content
         dialog.setDialogContent({
-            title: "Editar um aluno",
+            title: "Editar um paciente",
             type: "editstd",
             user: students.find((x)=>x.id == id)
         })
@@ -146,7 +146,7 @@ const StudentsPage = () => {
                         color="textPrimary"
                         variant="h4"
                     >
-                        Alunos
+                        Pacientes
                     </Typography>
                 </Stack>
                 <Button
@@ -157,12 +157,12 @@ const StudentsPage = () => {
                     }}
                     onClick={() => {
                         dialog.setDialogContent({
-                            title: "Adicionar um novo Aluno",
+                            title: "Adicionar um novo Paciente",
                             type: "createstd",
                         })
                     }}
                 >
-                    Adicionar Aluno
+                    Adicionar Paciente
                 </Button>
             </Container>
             <Container maxWidth="xl">

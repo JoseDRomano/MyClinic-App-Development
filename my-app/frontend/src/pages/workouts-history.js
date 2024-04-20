@@ -49,10 +49,10 @@ const WorkoutHistoryPage = () => {
     };
 
     dialog.setDialogContent({
-      title: "Eliminar um treino",
+      title: "Eliminar uma consulta",
       type: "confirmwkh",
       content:
-        "Tem a certeza que quer eliminar o treino realizado no dia " +
+        "Tem a certeza que quer eliminar a consulta realizada no dia " +
         formatCreatedDate(workoutHistory.find((x) => x.id == id).createdAt) +
         "?",
       action: deleteAction,
@@ -62,7 +62,7 @@ const WorkoutHistoryPage = () => {
   const handleEditClick = (id) => () => {
     //set popup content
     dialog.setDialogContent({
-      title: "Editar um treino",
+      title: "Editar uma consulta",
       type: "editwkh",
       workout: workoutHistory.find((x) => x.id == id),
     });
@@ -75,8 +75,8 @@ const WorkoutHistoryPage = () => {
       width: 150,
       renderCell: (params) => formatCreatedDate(params.value),
     },
-    { field: "workoutPlan", headerName: "Plano de treino", width: 160 },
-    { field: "student", headerName: "Aluno", width: 150 },
+    { field: "workoutPlan", headerName: "Consulta", width: 160 },
+    { field: "student", headerName: "Paciente", width: 150 },
     { field: "duration", headerName: "Duração", width: 150 },
     { field: "localization", headerName: "Localização", width: 150 },
     {
@@ -133,7 +133,7 @@ const WorkoutHistoryPage = () => {
             }}
             onClick={() => {
                 dialog.setDialogContent({
-                    title: "Adicionar um novo treino ao historico",
+                    title: "Adicionar uma nova consulta",
                     type: "createwkh",
                 })
             }}

@@ -28,7 +28,7 @@ const StudentPage = (params) => {
         <>
 
             <Head>
-                <title>Aluno | TrainWith.Me</title>
+                <title>Pacientes | My Clinic</title>
             </Head>
             <Box
                 component="main"
@@ -43,7 +43,7 @@ const StudentPage = (params) => {
                         gutterBottom
                         variant="h5"
                     >
-                        Alunos - {student.name}
+                        Pacientes - {student.name}
                     </Typography>
                     <br></br>
 
@@ -103,7 +103,7 @@ const StudentPage = (params) => {
                         <Grid item xs={12} sm={6} lg={3}>
                             <OverviewWidget
                                 icon="3"
-                                text={"1º Treino"}
+                                text={"1ª Consulta"}
                                 differenceDay={"semana"}
                                 sx={{height: "100%", background: ` linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);`}}
                                 value="20/11/2022"
@@ -112,7 +112,7 @@ const StudentPage = (params) => {
                         <Grid item xs={12} sm={6} lg={3}>
                             <OverviewWidget
                                 icon="4"
-                                text={"Nº treinos"}
+                                text={"Nº consultas"}
                                 sx={{height: "100%", background: `linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)`}}
                                 value="1"
                             />
@@ -142,8 +142,8 @@ const StudentPage = (params) => {
                                             >
                                                 <Card>
                                                     <CardHeader
-                                                        subheader="Pode ver aqui os treinos mais recentes"
-                                                        title="Treinos mais recente"
+                                                        subheader="Pode ver aqui as consultas mais recentes"
+                                                        title="Consultas mais recente"
                                                     />
                                                     <CardContent>
                                                         <Box>
@@ -163,7 +163,7 @@ const StudentPage = (params) => {
                                                                     md={6}
                                                                 >
                                                                     <Typography>
-                                                                    Plano de Treino: Peito e Tricep
+                                                                    Consulta: Revisão de Raio-X
 
                                                                     </Typography>
                                                                 </Grid>
@@ -195,8 +195,8 @@ const StudentPage = (params) => {
                                             >
                                                 <Card>
                                                     <CardHeader
-                                                        subheader="Pode ver as estatisticas do aluno"
-                                                        title="Último medida (registo)"
+                                                        subheader="Pode ver as estatisticas do paciente"
+                                                        title="Última consulta"
                                                     />
                                                     <CardContent>
                                                         <Box>
@@ -208,7 +208,7 @@ const StudentPage = (params) => {
                                                                     md={12}
                                                                 >
                                                                     <Typography>
-                                                                        Objetivo: {student.objective}
+                                                                        Motivo: {student.objective}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid

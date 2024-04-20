@@ -39,15 +39,15 @@ const Page = () => {
             try {
                 //await auth.signUp(values.email, values.name, values.password);
                 dialog.setDialogContent({
-                    title: "Registar-se como Personal Trainer",
+                    title: "Registar-se como Médico",
                     type: "confirm",
-                    content: "Tem a certeza que quer registar-se como Personal Trainer?",
+                    content: "Tem a certeza que quer registar-se como Médico?",
                     action: async () => {
                         await sleep(250);
                         dialog.setDialogContent({
-                            title: "Registar-se como Personal Trainer",
+                            title: "Registar-se como Médico",
                             type: "confirm",
-                            content: "Foi submetido um pré-registo para o nosso sistema. Em dentro de poucos minutos irá receber um email com a confirmação e as informações de acesso. Obrigado por se juntar ao TrainWith.Me",
+                            content: "Foi submetido um pré-registo para o nosso sistema. Em dentro de poucos minutos irá receber um email com a confirmação e as informações de acesso. Obrigado por se juntar ao My Clinic!",
                             action: async () => {
                                 router.push('/auth/login');
                             },
@@ -67,7 +67,7 @@ const Page = () => {
 
             <Head>
                 <title>
-                    Registar-se como personal trainer | Train With Me
+                    Registar-se como Médico | My Clinic
                 </title>
             </Head>
             <ConfirmDialog /> 
@@ -94,7 +94,7 @@ const Page = () => {
                             sx={{mb: 3}}
                         >
                             <Typography variant="h4">
-                                Registar-se como Personal Trainer
+                                Registar-se como Médico
                             </Typography>
                             <Typography
                                 color="text.secondary"

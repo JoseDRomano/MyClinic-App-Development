@@ -44,7 +44,7 @@ const Page = () => {
         <>
             <Head>
                 <title>
-                    Login | Train With Me
+                    Login | My Clinic
                 </title>
             </Head>
             <Box
@@ -72,7 +72,7 @@ const Page = () => {
                             sx={{mb: 5}}
                         >
                             <Typography variant='h1'>
-                                Bem-vindo ao TrainWith.me
+                                Bem-vindo ao My Clinic
                             </Typography>
 
                             <Typography variant="h4">
@@ -82,7 +82,7 @@ const Page = () => {
                                 color="text.secondary"
                                 variant="body2"
                             >
-                                Deseja registar-se como personal trainer?
+                                Deseja registar-se como médico?
                                 &nbsp;
                                 <Link
                                     component={NextLink}

@@ -10,7 +10,7 @@ const now = new Date();
 const Stats = () => (
     <>
         <Head>
-            <title>Estatísticas | Train with me</title>
+            <title>Estatísticas | My Clinic</title>
         </Head>
         <Box
             component="main"
@@ -54,7 +54,7 @@ const Stats = () => (
                             }}
                         >
                             <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Número treinos</Typography>
+                            <Typography variant="body2">Número Consultas</Typography>
                             <Box ml={10}> {/* Adding space here */}
                                 <Typography variant="subtitle2" fontWeight="bold">222</Typography>
                             </Box>
@@ -74,7 +74,7 @@ const Stats = () => (
                             }}
                         >
                             <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Alunos atualmente</Typography>
+                            <Typography variant="body2">Pacientes atualmente</Typography>
                             <Box ml={10}> {/* Adding space here */}
                                 <Typography variant="subtitle2" fontWeight="bold">23</Typography>
                             </Box>

@@ -20,7 +20,7 @@ export const OverviewBudget = (props) => {
                             color="text.secondary"
                             variant="overline"
                         >
-                            Alunos inscritos:
+                            Pacientes registados:
                         </Typography>
                         <Typography variant="h4">
                             {value}

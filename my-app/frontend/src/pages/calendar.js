@@ -28,7 +28,7 @@ const Calendar = () => {
 
 
     const handleDateClick = (selected) => {
-        const title = prompt("Por favor adicione o nome do Aluno.");
+        const title = prompt("Por favor adicione o nome do Paciente.");
         const calendarApi = selected.view.calendar;
         
         calendarApi.unselect();
@@ -61,7 +61,7 @@ const Calendar = () => {
 
     const handleEventClick = (selected) => {
         dialog.setDialogContent({
-            title: "Eliminar uma marcação",
+            title: "Eliminar uma consulta",
             type: "confirm",
             content: "Tem a certeza que quer eliminar a marcação '" + selected.event.title + "'?",
             action: ()=>{
@@ -80,7 +80,7 @@ const Calendar = () => {
                 {/* CALENDAR SIDEBAR */}
                 <Box flex="1 1 20%" backgroundColor="white" p="10px" borderRadius="4px">
                     <Typography variant="h5">
-                        Marcações
+                        Consultas
                     </Typography>
                     <List>
                         {currentEvents.map((event) => (

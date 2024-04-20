@@ -32,10 +32,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/login": [
+    "/students": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/auth/login.js"
+      "static/chunks/pages/students.js"
+    ],
+    "/workouts": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/workouts.js"
+    ],
+    "/workouts-history": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/workouts-history.js"
     ]
   },
   "ampFirstPages": []

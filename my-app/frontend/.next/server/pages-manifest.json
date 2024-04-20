@@ -2,7 +2,12 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/api/students": "pages/api/students.js",
+  "/404": "pages/404.js",
+  "/workouts": "pages/workouts.js",
+  "/workouts-history": "pages/workouts-history.js",
+  "/api/workoutHistory": "pages/api/workoutHistory.js",
+  "/students": "pages/students.js",
   "/": "pages/index.js",
-  "/auth/login": "pages/auth/login.js",
-  "/404": "pages/404.js"
+  "/api/workouts": "pages/api/workouts.js"
 }
