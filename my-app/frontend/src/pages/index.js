@@ -12,7 +12,7 @@ const Page = () => {
     const [students, setStudents] = useState([]);
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch('/api/students', {
+            let response = await fetch('/api/pacients', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.5}>
                             <OverviewWidget
                                 icon="1"
-                                text={"Alunos inscritos"}
+                                text={"Pacientes registados"}
                                 difference={5}
                                 differenceDay={"mês"}
                                 positive={true}
@@ -66,7 +66,7 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="2"
-                                text={"Treinos hoje"}
+                                text={"Consultas hoje"}
                                 differenceDay={"dia"}
                                 difference={6}
                                 positive={true}
@@ -77,7 +77,7 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="3"
-                                text={"Treinos Semanais"}
+                                text={"Consultas Semanais"}
                                 differenceDay={"semana"}
                                 difference={1}
                                 positive={false}
@@ -88,7 +88,7 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="4"
-                                text={"Treinos Mensais"}
+                                text={"Consultas Mensais"}
                                 differenceDay={"mês"}
                                 difference={11}
                                 positive={true}

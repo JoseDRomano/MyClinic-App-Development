@@ -12,7 +12,7 @@ const StudentPage = (params) => {
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch(`/api/student?id=${router.query.id}`, {
+            let response = await fetch(`/api/pacient?id=${router.query.id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,14 +63,6 @@ const StudentPage = (params) => {
                                             flexDirection: 'column'
                                         }}
                                     >
-                                        <Avatar
-                                            src={student.photo}
-                                            sx={{
-                                                height: 60,
-                                                mb: 2,
-                                                width: 60
-                                            }}
-                                        />
                                         <Typography
                                             gutterBottom
                                             variant="h5"
@@ -208,7 +200,7 @@ const StudentPage = (params) => {
                                                                     md={12}
                                                                 >
                                                                     <Typography>
-                                                                        Motivo: {student.objective}
+                                                                        Contacto Telefónico: {student.phoneNumber}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid
@@ -216,7 +208,7 @@ const StudentPage = (params) => {
                                                                     md={6}
                                                                 >
                                                                     <Typography>
-                                                                        Peso: {student.weight}kg
+                                                                        Nº Cartão de Cidadão: {student.citizenId}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid
@@ -224,21 +216,44 @@ const StudentPage = (params) => {
                                                                     md={6}
                                                                 >
                                                                     <Typography>
-                                                                        Altura: {student.height}cm
+                                                                        Nº de Utente: {student.healthId}
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid
                                                                     xs={12}
                                                                     md={6}
                                                                 >
-                                                                    Percentagem de massa gorda: {student.bodyFat}%
+                                                                    Sexo: {student.sex}
                                                                 </Grid>
                                                                 <Grid
                                                                     xs={12}
                                                                     md={6}
                                                                 >
-
+                                                                    <Typography>
+                                                                        Género: {student.gender}
+                                                                    </Typography>
                                                                 </Grid>
+                                                                <Grid
+                                                                    xs={12}
+                                                                    md={6}
+                                                                >
+                                                                </Grid>
+                                                                    <Typography>
+                                                                        Data de Nascimento: {student.birthDate}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid
+                                                                    xs={12}
+                                                                    md={6}
+                                                                >
+                                                                    <Typography>
+                                                                        Morada: {student.address}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid
+                                                                    xs={12}
+                                                                    md={6}
+                                                                >
                                                                 <Grid
                                                                     xs={12}
                                                                     md={6}

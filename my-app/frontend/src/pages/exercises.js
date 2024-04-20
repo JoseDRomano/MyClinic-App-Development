@@ -17,7 +17,7 @@ const ExercisesPage = () => {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch("/api/exercises", {
+      let response = await fetch("/api/check-ins", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const ExercisesPage = () => {
 
   const handleDeleteClick = (id) => () => {
     const deleteAction = () => {
-      fetch("/api/exercises", {
+      fetch("/api/check-ins", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -61,10 +61,10 @@ const ExercisesPage = () => {
     };
 
     dialog.setDialogContent({
-      title: "Eliminar um exercício",
+      title: "Eliminar um check-in",
       type: "confirmex",
       content:
-        "Tem a certeza que quer eliminar o exercício '" +
+        "Tem a certeza que quer eliminar o check-in '" +
         exercises.find((x) => x.id == id).name +
         "'?",
       action: deleteAction,
@@ -74,7 +74,7 @@ const ExercisesPage = () => {
   const handleEditClick = (id) => () => {
     //set popup content
     dialog.setDialogContent({
-      title: "Editar um exercício",
+      title: "Editar um check-in",
       type: "editex",
       exercise: exercises.find((x) => x.id == id),
     });
@@ -161,7 +161,7 @@ const ExercisesPage = () => {
         <Container maxWidth={false}>
           <Stack direction="row" justifyContent="space-between" mb={3}>
             <Typography color="textPrimary" variant="h4">
-              Bibilioteca de exercícios
+              Check-Ins
             </Typography>
           </Stack>
           <br />
@@ -175,7 +175,7 @@ const ExercisesPage = () => {
               dialog.openDialog();
             }}
           >
-            Adicionar Exercício
+            Adicionar Check-In
           </Button>
         </Container>
         <br />

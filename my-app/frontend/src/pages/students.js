@@ -23,7 +23,7 @@ const StudentsPage = () => {
     useEffect(() => {
         NProgress.start()
         async function fetchMyAPI() {
-            let response = await fetch('/api/students', {
+            let response = await fetch('/api/pacients', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const StudentsPage = () => {
     const handleDeleteClick = (id) => () => {
 
         const deleteAction = () =>{
-            fetch('/api/students', {
+            fetch('/api/pacients', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const StudentsPage = () => {
     ];
 
     const handleRowClick = (params) => {
-        router.push(`/students/${params.id}`)
+        router.push(`/pacients/${params.id}`)
     };
 
     return (

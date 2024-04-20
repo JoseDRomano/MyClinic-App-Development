@@ -121,7 +121,7 @@ const WorkoutHistoryPage = () => {
         <Container maxWidth={false}>
           <Stack direction="row" justifyContent="space-between" mb={3}>
             <Typography color="textPrimary" variant="h4">
-              Histórico de treinos
+              Históricos de Consultas
             </Typography>
           </Stack>
           <br />
@@ -138,7 +138,7 @@ const WorkoutHistoryPage = () => {
                 })
             }}
           >
-            Adicionar registo de treino
+            Adicionar registo de consulta
           </Button>
         </Container>
         <br />

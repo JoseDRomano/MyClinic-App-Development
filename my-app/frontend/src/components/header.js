@@ -1,5 +1,5 @@
 import {Box, Typography, useTheme} from "@mui/material";
-import {beige, success} from "../theme/colors";
+import {info, success} from "../theme/colors";
 
 const Header = ({title, subtitle}) => {
     const theme = useTheme();
@@ -7,7 +7,7 @@ const Header = ({title, subtitle}) => {
     return (
         <Box mb="30px">
             <Typography variant="h2"
-                        color={beige.main}
+                        color={info.main}
                         fontWeight="bold"
                         sx={{mb: "5px"}}
             >

@@ -11,15 +11,15 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             addWorkout(req)
-            res.status(200).json({message: "Workout Created"})
+            res.status(200).json({message: "Consulta Criada"})
             break
         case 'PUT':
             updateWorkout(req)
-            res.status(200).json({message: "Workout Updated"})
+            res.status(200).json({message: "Consulta Eliminada"})
             break;
         case 'DELETE':
             deleteWorkout(req)
-            res.status(200).json({message: "Workout Deleted"})
+            res.status(200).json({message: "Consulta Atualizada"})
             break;
 
     }

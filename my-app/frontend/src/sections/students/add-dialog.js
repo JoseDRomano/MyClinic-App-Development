@@ -18,7 +18,7 @@ import { ConfirmDialog } from "./confirm-dialog";
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
-  height: 1,
+  healthId: 1,
   overflow: "hidden",
   position: "absolute",
   bottom: 0,
@@ -34,11 +34,13 @@ export const AddUserDialog = () => {
     initialValues: {
       name: "",
       email: "",
-      objective: "",
-      weight: "",
-      height: "",
-      bodyFat: "",
-      photo: null,
+      phoneNumber: "",
+      citizenId: "",
+      healthId: "",
+      sex: "",
+      gender: "",
+      birthDate: "",
+      address: "",
       submit: null,
     },
     validationSchema: Yup.object({
@@ -47,20 +49,21 @@ export const AddUserDialog = () => {
         .email("O email tem que ser válido")
         .max(255)
         .required("O email é necessário"),
-      objective: Yup.string().max(255).required("O objetivo é necessário."),
-      weight: Yup.number().positive("O peso deve ser positivo").required("O peso é necessário."),
-      height: Yup.number().positive("A altura deve ser positiva").required("A altura é necessária"),
-      bodyFat: Yup.number()
-        .positive("A massa gorda deve ser positiva")
-        .required("A massa gorda(%) é necessária"),
+      phoneNumber: Yup.string().max(255).required("O número de telefone é necessário."),
+      citizenId: Yup.number().required("O nº do cartão de cidadão é necessário."),
+      healthId: Yup.number().required("O nº de utente é necessário."),
+      sex: Yup.string().required("O sexo é necessário."),
+      gender: Yup.string().required("O género é necessário."),
+      birthDate: Yup.date().required("A data de nascimento é necessária."),
+      address: Yup.string().required("A morada é necessária.")
     }),
     onSubmit: async (values, helpers) => {
       //console.log(values);
       try {
         //add student to db
 
-        const addMessage = `Ao adicionar um novo estudante, irá ser enviado para o email ${values.email} uma palavra-passe gerada para o mesmo aceder ao website.`;
-        const editMessage = `Tem a certeza que quer editar o estudante ${values.email}?`;
+        const addMessage = `Ao adicionar um novo paciente, irá ser enviado para o email ${values.email} uma palavra-passe gerada para o mesmo aceder ao website.`;
+        const editMessage = `Tem a certeza que quer editar o paciente ${values.email}?`;
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
@@ -68,7 +71,7 @@ export const AddUserDialog = () => {
         if (dialog.getType().type == "editstd") values.id = dialog.getType().user._id;
 
         const addEditUserAction = () => {
-          fetch("/api/students", {
+          fetch("/api/pacients", {
             method: dialog.getType().type == "editstd" ? "PUT" : "POST",
             headers: {
               "Content-Type": "application/json",
@@ -84,7 +87,7 @@ export const AddUserDialog = () => {
         };
 
         dialog.setDialogContent({
-          title: dialog.getType().type == "editstd" ? "Editar um aluno" : "Adicionar um aluno",
+          title: dialog.getType().type == "editstd" ? "Editar um paciente" : "Adicionar um paciente",
           type: "confirmstd",
           content: dialog.getType().type == "editstd" ? editMessage : addMessage,
           action: addEditUserAction,
@@ -102,19 +105,23 @@ export const AddUserDialog = () => {
     if (dialog.getType().type == "editstd") {
       formik.setFieldValue("name", dialog.getType().user.name);
       formik.setFieldValue("email", dialog.getType().user.email);
-      formik.setFieldValue("objective", dialog.getType().user.objective);
-      formik.setFieldValue("weight", dialog.getType().user.weight);
-      formik.setFieldValue("height", dialog.getType().user.height);
-      formik.setFieldValue("bodyFat", dialog.getType().user.bodyFat);
-      formik.setFieldValue("photo", dialog.getType().user.photo);
+      formik.setFieldValue("phoneNumber", dialog.getType().user.phoneNumber);
+      formik.setFieldValue("citizenId", dialog.getType().user.citizenId);
+      formik.setFieldValue("healthId", dialog.getType().user.healthId);
+      formik.setFieldValue("sex", dialog.getType().user.sex);
+      formik.setFieldValue("gender", dialog.getType().user.gender);
+      formik.setFieldValue("birthDate", dialog.getType().user.birthDate);
+      formik.setFieldValue("address", dialog.getType().user.address);
     } else {
       formik.setFieldValue("name", "");
       formik.setFieldValue("email", "");
-      formik.setFieldValue("objective", "");
-      formik.setFieldValue("weight", "");
-      formik.setFieldValue("height", "");
-      formik.setFieldValue("bodyFat", "");
-      formik.setFieldValue("photo", null);
+      formik.setFieldValue("phoneNumber", "");
+      formik.setFieldValue("citizenId", "");
+      formik.setFieldValue("healthId", "");
+      formik.setFieldValue("sex", "");
+      formik.setFieldValue("gender", "");
+      formik.setFieldValue("birthDate", "");
+      formik.setFieldValue("address", "");
     }
   }, [dialog]);
 
@@ -146,66 +153,79 @@ export const AddUserDialog = () => {
               value={formik.values.email}
             />
             <TextField
-              error={!!(formik.touched.objective && formik.errors.objective)}
+              error={!!(formik.touched.phoneNumber && formik.errors.phoneNumber)}
               fullWidth
-              helperText={formik.touched.objective && formik.errors.objective}
-              label="Objetivo (Ex: ganho de massa muscular)"
-              name="objective"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.objective}
-            />
-            <TextField
-              error={!!(formik.touched.weight && formik.errors.weight)}
-              fullWidth
-              helperText={formik.touched.weight && formik.errors.weight}
-              label="Peso (kg)"
-              name="weight"
+              helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+              label="Nº de Telefone"
+              name="phoneNumber"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               type="number"
-              value={formik.values.weight}
+              value={formik.values.phoneNumber}
             />
             <TextField
-              error={!!(formik.touched.height && formik.errors.height)}
+              error={!!(formik.touched.citizenId && formik.errors.citizenId)}
               fullWidth
-              helperText={formik.touched.height && formik.errors.height}
-              label="Altura (cm)"
-              name="height"
+              helperText={formik.touched.citizenId && formik.errors.citizenId}
+              label="Nº Cartão de Cidadão"
+              name="citizenId"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               type="number"
-              value={formik.values.height}
+              value={formik.values.citizenId}
             />
             <TextField
-              error={!!(formik.touched.bodyFat && formik.errors.bodyFat)}
+              error={!!(formik.touched.healthId && formik.errors.healthId)}
               fullWidth
-              helperText={formik.touched.bodyFat && formik.errors.bodyFat}
-              label="Massa Gorda (%)"
-              name="bodyFat"
+              helperText={formik.touched.healthId && formik.errors.healthId}
+              label="Nº de Utente"
+              name="healthId"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               type="number"
-              value={formik.values.bodyFat}
+              value={formik.values.healthId}
             />
-            <Button
-              component="label"
-              onChange={(event) => {
-                let reader = new FileReader();
-                let file = event.target.files[0];
-                reader.onloadend = () => {
-                  formik.setFieldValue("photo", reader.result);
-                };
-                reader.readAsDataURL(file);
-              }}
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
-            >
-              {formik.values?.photo
-                ? "Foto carregada com sucesso"
-                : "Escolher uma foto para o aluno"}
-              <VisuallyHiddenInput name="photo" type="file" />
-            </Button>
+            <TextField
+              error={!!(formik.touched.sex && formik.errors.sex)}
+              fullWidth
+              helperText={formik.touched.sex && formik.errors.sex}
+              label="Sexo"
+              name="sex"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.sex}
+            />
+            <TextField
+              error={!!(formik.touched.gender && formik.errors.gender)}
+              fullWidth
+              helperText={formik.touched.gender && formik.errors.gender}
+              label="Género"
+              name="gender"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.gender}
+            />
+            <TextField
+                error={!!(formik.touched.birthDate && formik.errors.birthDate)}
+                fullWidth
+                helperText={formik.touched.birthDate && formik.errors.birthDate}
+                label="Ano de Nascimento"
+                name="birthDate"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="date"
+                value={formik.values.birthDate}
+            />
+            <TextField
+                error={!!(formik.touched.address && formik.errors.address)}
+                fullWidth
+                helperText={formik.touched.address && formik.errors.address}
+                label="Morada"
+                name="address"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.address}
+            />
           </Stack>
           {formik.errors.submit && (
             <Typography color="error" sx={{ mt: 3, backgroundColor: beige.main }} variant="body2">

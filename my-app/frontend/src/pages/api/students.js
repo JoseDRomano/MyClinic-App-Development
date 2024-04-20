@@ -13,15 +13,15 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             addStudent(req)
-            res.status(200).json({message: "Student Created"})
+            res.status(200).json({message: "Paciente Adicionado"})
             break;
         case 'DELETE':
             deleteStudent(req)
-            res.status(200).json({message: "Student Deleted"})
+            res.status(200).json({message: "Paciente Eliminado"})
             break;
         case 'PUT':
             updateStudent(req)
-            res.status(200).json({message: "Student Updated"})
+            res.status(200).json({message: "Paciente Atualizado"})
             break;
 
     }

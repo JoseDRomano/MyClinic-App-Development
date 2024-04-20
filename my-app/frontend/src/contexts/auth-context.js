@@ -142,7 +142,7 @@ export const AuthProvider = (props) => {
             id: '5e86809283e28b96d2d38537',
             avatar: '/assets/avatars/avatar-joaquim-alberto.png',
             name: 'Joaquim Alberto',
-            email: 'anika.visser@trainwith.me'
+            email: 'anika.visser@myclinic.pt'
         };
 
         dispatch({

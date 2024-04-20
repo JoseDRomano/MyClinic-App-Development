@@ -11,15 +11,15 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             addWorkoutHistory(req)
-            res.status(200).json({message: "Workout History Created"})
+            res.status(200).json({message: "Histórico de Consulta Adicionada"})
             break
         case 'PUT':
             updateWorkoutHistory(req)
-            res.status(200).json({message: "Workout Updated"})
+            res.status(200).json({message: "Consulta Atualizada"})
             break;
         case 'DELETE':
             deleteWorkoutHistory(req)
-            res.status(200).json({message: "Workout History Deleted"})
+            res.status(200).json({message: "Histórico Eliminado"})
             break;
 
     }

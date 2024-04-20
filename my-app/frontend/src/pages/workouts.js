@@ -32,7 +32,7 @@ const WorkoutsPage = () => {
       title: "Eliminar uma consulta",
       type: "confirmwk",
       content:
-        "Tem a certeza que quer eliminar o treino " + workouts.find((x) => x.id == id).name + "?",
+        "Tem a certeza que quer eliminar a consulta " + workouts.find((x) => x.id == id).name + "?",
       action: deleteAction,
     });
   };
@@ -65,7 +65,7 @@ const WorkoutsPage = () => {
     },
     {
       field: "exerciseList",
-      headerName: "Exercícios",
+      headerName: "Consulta",
       width: "300",
       sortable: false,
       renderCell: (params) => {
@@ -162,7 +162,7 @@ const WorkoutsPage = () => {
         <Container maxWidth={false}>
           <Stack direction="row" justifyContent="space-between" mb={3}>
             <Typography color="textPrimary" variant="h4">
-              Planos de treino
+              Consultas
             </Typography>
           </Stack>
           <br />
