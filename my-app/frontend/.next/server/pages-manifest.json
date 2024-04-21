@@ -3,5 +3,6 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/stats": "pages/stats.js",
-  "/auth/login": "pages/auth/login.js"
+  "/workouts": "pages/workouts.js",
+  "/api/staff": "pages/api/staff.js"
 }
