@@ -22,15 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/exercises": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/exercises.js"
+    ],
     "/stats": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/stats.js"
-    ],
-    "/students": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/students.js"
     ]
   },
   "ampFirstPages": []

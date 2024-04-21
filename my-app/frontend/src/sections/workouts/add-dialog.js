@@ -92,7 +92,7 @@ export const AddWorkoutDialog = () => {
   });
 
   useEffect(() => {
-    if (dialog.getType().type == "editwk") {
+    if (dialog.getType().type == "editstd") {
       formik.setFieldValue("name", dialog.getType().user.name);
       formik.setFieldValue("duration", dialog.getType().user.duration);
       formik.setFieldValue("staff", dialog.getType().user.staff);

@@ -50,7 +50,7 @@ const WorkoutHistoryPage = () => {
 
     dialog.setDialogContent({
       title: "Eliminar um equipamento",
-      type: "confirmwkh",
+      type: "confirmstd",
       content:
         "Tem a certeza que quer eliminar o equipamento " +
         workoutHistory.find((x) => x.id == id) +
@@ -63,7 +63,7 @@ const WorkoutHistoryPage = () => {
     //set popup content
     dialog.setDialogContent({
       title: "Editar um equipamento",
-      type: "editwkh",
+      type: "editstd",
       workout: workoutHistory.find((x) => x.id == id),
     });
   };
@@ -109,7 +109,7 @@ const WorkoutHistoryPage = () => {
 
   return (
     <>
-      {dialog.getType().type == "confirmwkh" ? <ConfirmDialog /> : <AddWorkoutHistoryDialog />}
+      {dialog.getType().type == "confirmstd" ? <ConfirmDialog /> : <AddWorkoutHistoryDialog />}
       <Box
         sx={{
           backgroundColor: "background.default",
@@ -133,7 +133,7 @@ const WorkoutHistoryPage = () => {
             onClick={() => {
                 dialog.setDialogContent({
                     title: "Adicionar um novo equipamento",
-                    type: "createwkh",
+                    type: "createstd",
                 })
             }}
           >

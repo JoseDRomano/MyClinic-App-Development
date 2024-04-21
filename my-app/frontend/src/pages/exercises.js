@@ -62,7 +62,7 @@ const ExercisesPage = () => {
 
     dialog.setDialogContent({
       title: "Eliminar um check-in",
-      type: "confirmex",
+      type: "confirmstd",
       content:
         "Tem a certeza que quer eliminar o check-in '" +
         exercises.find((x) => x.id == id).name +
@@ -123,7 +123,7 @@ const ExercisesPage = () => {
 
   return (
     <>
-      {dialog.getType().type == "confirmex" ? <ConfirmDialog /> : <AddExerciseDialog />}
+      {dialog.getType().type == "confirmstd" ? <ConfirmDialog /> : <AddExerciseDialog />}
       <Box
         sx={{
           backgroundColor: "background.default",

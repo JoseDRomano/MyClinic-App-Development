@@ -30,7 +30,7 @@ const WorkoutsPage = () => {
 
     dialog.setDialogContent({
       title: "Eliminar uma consulta",
-      type: "confirmwk",
+      type: "confirmstd",
       content:
         "Tem a certeza que quer eliminar a consulta " + workouts.find((x) => x.id == id).name + "?",
       action: deleteAction,
@@ -41,7 +41,7 @@ const WorkoutsPage = () => {
     //set popup content
     dialog.setDialogContent({
       title: "Editar uma consulta",
-      type: "editwk",
+      type: "editstd",
       workout: workouts.find((x) => x.id == id),
     });
   };
@@ -118,7 +118,7 @@ const WorkoutsPage = () => {
 
   return (
     <>
-      {dialog.getType().type == "confirmwk" ? <ConfirmDialog /> : <AddWorkoutDialog />}
+      {dialog.getType().type == "confirmstd" ? <ConfirmDialog /> : <AddWorkoutDialog />}
 
       <Box
         sx={{
@@ -143,7 +143,7 @@ const WorkoutsPage = () => {
             onClick={() => {
                 dialog.setDialogContent({
                     title: "Adicionar uma nova Consulta",
-                    type: "createwk",
+                    type: "createstd",
                 })
             }}
           >

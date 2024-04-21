@@ -65,9 +65,9 @@ export const AddExerciseDialog = () => {
             try {
                 helpers.setStatus({success: true});
                 helpers.setSubmitting(true);
-                if (dialog.getType().type == "editex") values.id = dialog.getType().exercise._id;
+                if (dialog.getType().type == "editstd") values.id = dialog.getType().exercise._id;
                 await fetch('/api/check-ins', {
-                    method: dialog.getType().type == "editex" ? "PUT" : "POST",
+                    method: dialog.getType().type == "editstd" ? "PUT" : "POST",
                     headers: {
                         'Content-Type': 'application/json',
                     },

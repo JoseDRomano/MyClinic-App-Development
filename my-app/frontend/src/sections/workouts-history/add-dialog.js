@@ -51,12 +51,12 @@ export const AddWorkoutHistoryDialog = () => {
     onSubmit: async (values, helpers) => {
       try {
 
-        if (dialog.getType().type == "editwkh") values.id = dialog.getType().workout._id;
+        if (dialog.getType().type == "editstd") values.id = dialog.getType().workout._id;
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
         await fetch("/api/equipments", {
-          method: dialog.getType().type == "editwkh" ? "PUT" : "POST",
+          method: dialog.getType().type == "editstd" ? "PUT" : "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -75,7 +75,7 @@ export const AddWorkoutHistoryDialog = () => {
   });
 
   useEffect(() => {
-    if (dialog.getType().type == "editwkh") {
+    if (dialog.getType().type == "editstd") {
       formik.setFieldValue("equipment", dialog.getType().workout.equipment);
       formik.setFieldValue("lastMaintenance", dialog.getType().workout.lastMaintenance);
       formik.setFieldValue("availability", dialog.getType().workout.availability);
