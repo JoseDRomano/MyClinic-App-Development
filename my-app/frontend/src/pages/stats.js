@@ -9,6 +9,8 @@ import {ConfirmDialog} from "@/sections/stats/confirm-dialog";
 import {AddUserDialog} from "@/sections/stats/add-dialog";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import {info} from "@/theme/colors";
+import {useRouter} from "next/router";
+import NProgress from "nprogress";
 
 const now = new Date();
 
@@ -16,6 +18,8 @@ const Stats = () => {
     const [stats, setStats] = useState([]);
 
     const dialog = useDialog();
+
+    const router = useRouter();
 
     const handleDeleteClick = (id) => () => {
         const deleteAction = () => {
@@ -145,7 +149,7 @@ const Stats = () => {
     ];
 
     useEffect(() => {
-
+        NProgress.start()
         async function fetchMyAPI() {
             let response = await fetch("/api/staff", {
                 method: "GET",
@@ -159,14 +163,19 @@ const Stats = () => {
                 r.id = r._id;
             });
             setStats(response);
+            NProgress.done()
         }
 
         fetchMyAPI();
     }, []);
 
+    const handleRowClick = (params) => {
+        router.push(`/patients/${params.id}`)
+    };
+
 return (
     <>
-        {dialog.getType().type == "confirmwk" ? <ConfirmDialog /> : <AddUserDialog />}
+        {dialog.getType().type == "confirmstd" ? <ConfirmDialog /> : <AddUserDialog />}
 
         <Box
             sx={{
@@ -191,7 +200,7 @@ return (
                     onClick={() => {
                         dialog.setDialogContent({
                             title: "Adicionar um novo profissional",
-                            type: "createwk",
+                            type: "createstd",
                         })
                     }}
                 >
@@ -201,7 +210,17 @@ return (
             <br />
             <Container maxWidth="xl">
                 <Stack spacing={3}>
-                    <DataGrid rows={stats} columns={columns} pageSizeOptions={[5, 10]} />
+                    <DataGrid
+                        onRowClick={handleRowClick}
+                        rows={stats}
+                        columns={columns}
+                        initialState={{
+                            pagination: {
+                                paginationModel: {page: 0, pageSize: 10},
+                            },
+                        }}
+                        pageSizeOptions={[5, 10]}
+                    />
                 </Stack>
             </Container>
         </Box>
