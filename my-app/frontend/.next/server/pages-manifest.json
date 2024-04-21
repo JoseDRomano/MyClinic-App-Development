@@ -2,11 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/auth/login": "pages/auth/login.js",
-  "/api/patients": "pages/api/patients.js",
+  "/stats": "pages/stats.js",
   "/workouts-history": "pages/workouts-history.js",
-  "/students": "pages/students.js",
-  "/exercises": "pages/exercises.js",
-  "/api/check-ins": "pages/api/check-ins.js"
+  "/workouts": "pages/workouts.js"
 }

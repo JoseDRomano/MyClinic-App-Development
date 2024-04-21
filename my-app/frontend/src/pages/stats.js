@@ -9,8 +9,8 @@ import {useDialog} from "@/contexts/dialog-context";
 import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-import {ConfirmDialog} from "@/sections/students/confirm-dialog";
-import {AddWorkoutDialog} from "@/sections/workouts/add-dialog";
+import {ConfirmDialog} from "@/sections/stats/confirm-dialog";
+import {AddUserDialog} from "@/sections/stats/add-dialog";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import {info} from "@/theme/colors";
 
@@ -116,7 +116,7 @@ const Stats = () => {
 
 return (
     <>
-        {dialog.getType().type == "confirmwk" ? <ConfirmDialog /> : <AddWorkoutDialog />}
+        {dialog.getType().type == "confirmwk" ? <ConfirmDialog /> : <AddUserDialog />}
 
         <Box
             sx={{
