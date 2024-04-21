@@ -41,10 +41,8 @@ export const AddWorkoutDialog = () => {
       duration: Yup.number()
         .min(1, "Necessário duração: min -> 1")
         .required("Campo obrigatório"),
-      staff: Yup.string()
-        .required("Campo obrigatório"),
-      date: Yup.date()
-        .required("Campo obrigatório")
+      staff: Yup.string().max(255).required("Campo obrigatório"),
+      date: Yup.date().required("Campo obrigatório")
     }),
 
     onSubmit: async (values, helpers) => {
@@ -78,7 +76,7 @@ export const AddWorkoutDialog = () => {
         };
 
         dialog.setDialogContent({
-          title: dialog.getType().type == "editstd" ? "Editar um check-in" : "Adicionar um check-in",
+          title: dialog.getType().type == "editstd" ? "Editar uma consulta" : "Adicionar uma consulta",
           type: "confirmstd",
           content: dialog.getType().type == "editstd" ? editMessage : addMessage,
           action: addEditUserAction,
@@ -95,17 +93,15 @@ export const AddWorkoutDialog = () => {
 
   useEffect(() => {
     if (dialog.getType().type == "editwk") {
-      const { name, exerciseList, students, duration } = dialog.getType().workouts;
-      console.log(students)
-      formik.setFieldValue("name", name);
-      formik.setFieldValue("duration", duration);
-      formik.setFieldValue("staff", staff);
-      formik.setFieldValue("date", date);
+      formik.setFieldValue("name", dialog.getType().user.name);
+      formik.setFieldValue("duration", dialog.getType().user.duration);
+      formik.setFieldValue("staff", dialog.getType().user.staff);
+      formik.setFieldValue("date", dialog.getType().user.date);
     } else {
       formik.setFieldValue("name", "");
       formik.setFieldValue("duration", "");
-      formik.setFieldValue("students", "");
-      formik.setFieldValue("duration", "");
+      formik.setFieldValue("staff", "");
+      formik.setFieldValue("date", "");
     }
   }, [dialog]);
 
