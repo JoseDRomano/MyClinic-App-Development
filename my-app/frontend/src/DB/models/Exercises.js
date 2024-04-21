@@ -25,22 +25,23 @@ import mongoose, {Schema} from "mongoose";
     }, */
 const exercisesSchema = new Schema(
     {
-        name: String,
-        force: String,
-        level: String,
-        mechanic: String,
-        equipment: String,
-        primaryMuscles: [String],
-        secondaryMuscles: [String],
-        instructions: [String],
-        category: String,
-        photo: [String],
+        patient_name: {type: String, required: true},
+        citizenId: {type: String, required: true},
+        healthId: {type: String, required: true},
+        sex: {type: String, required: true},
+        gender: {type: String, required: false},
+        birthDate: {type: String, required: true},
+        address: {type: String, required: true},
+        entry_hour:{type: String, required: true},
+        symptoms: {type: String, required: true},
+        priority: {type: String, required: true},
+        state: {type: String, required: true}
     },
     {
         timestamps: true,
     }
 );
 
-const Exercises = mongoose.models?.Exercises || mongoose.model("Exercises", exercisesSchema);
+const Exercises = mongoose.models?.CheckIns || mongoose.model("CheckIns", exercisesSchema);
 
 export default Exercises;
