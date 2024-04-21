@@ -239,7 +239,7 @@ export const AddUserDialog = () => {
             type="submit"
             variant="contained"
           >
-            {dialog.getType().type == "editstd" ? "Editar" : "Adicionar"} aluno
+            {dialog.getType().type == "editstd" ? "Editar" : "Adicionar"} paciente
           </Button>
         </form>
       </DialogContent>

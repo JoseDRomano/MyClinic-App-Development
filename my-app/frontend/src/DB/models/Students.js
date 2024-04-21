@@ -2,20 +2,22 @@ import mongoose, {Schema} from "mongoose";
 
 const studentSchema = new Schema(
     {
-        name: String,
-        email: String,
-        password: String,
-        objective: String,
-        weight: Number,
-        height: Number,
-        bodyFat: Number,
-        photo: String,
+        name: {type: String, required: true},
+        email: {type: String, required: true},
+        password: {type: String, required: true},
+        phoneNumber: {type: String, required: true},
+        citizenId: {type: String, required: true},
+        healthId: {type: String, required: true},
+        sex: {type: String, required: true},
+        gender: {type: String, required: true},
+        birthDate: {type: String, required: true},
+        address: {type: String, required: true}
     },
     {
         timestamps: true,
     }
 );
 
-const Student = mongoose.models?.Student || mongoose.model("Student", studentSchema);
+const Student = mongoose.models?.Patient || mongoose.model("Patient", studentSchema);
 
 export default Student;

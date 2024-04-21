@@ -22,15 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/clone1": [
+    "/students": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/clone1.js"
-    ],
-    "/clone2": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/clone2.js"
+      "static/chunks/pages/students.js"
     ]
   },
   "ampFirstPages": []
