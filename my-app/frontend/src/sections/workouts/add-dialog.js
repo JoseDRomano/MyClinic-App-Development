@@ -53,7 +53,8 @@ export const AddWorkoutDialog = () => {
          * its a bit little martelada, mas tava sem paciencia e já eram 4h da manhã
          */
 
-        const editMessage = `Tem a certeza que quer editar o check-in ${values.email}?`;
+        const addMessage = `Ao adicionar uma nova consulta, o profissional ${values.staff} será notificado.`;
+        const editMessage = `Tem a certeza que quer editar a consulta ${values.name}?`;
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
@@ -175,7 +176,7 @@ export const AddWorkoutDialog = () => {
               console.log("errors", formik.errors);
             }}
           >
-            Adicionar Check-In
+            Adicionar Consulta
           </Button>
         </form>
       </DialogContent>
