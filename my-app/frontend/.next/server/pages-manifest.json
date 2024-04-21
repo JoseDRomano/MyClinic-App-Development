@@ -3,10 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/stats": "pages/stats.js",
-<<<<<<< HEAD
-  "/auth/login": "pages/auth/login.js",
-=======
-  "/workouts": "pages/workouts.js",
->>>>>>> 54e15faa1914c62b5007d3516dd3a1f12ec43a54
-  "/api/staff": "pages/api/staff.js"
+  "/api/patients": "pages/api/patients.js",
+  "/api/staff": "pages/api/staff.js",
+  "/students": "pages/students.js"
 }

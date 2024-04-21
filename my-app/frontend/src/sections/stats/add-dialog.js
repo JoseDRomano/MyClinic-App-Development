@@ -61,7 +61,7 @@ export const AddUserDialog = () => {
       address: Yup.string().required("É necessária morada.")
     }),
     onSubmit: async (values, helpers) => {
-      //console.log(values);
+      console.log(values);
       try {
         //add student to db
 
@@ -70,6 +70,7 @@ export const AddUserDialog = () => {
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
+        //console.log(dialog.getType().type);
 
         if (dialog.getType().type == "editstd") values.id = dialog.getType().user._id;
 
