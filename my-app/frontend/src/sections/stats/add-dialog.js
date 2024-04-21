@@ -90,7 +90,7 @@ export const AddUserDialog = () => {
         };
 
         dialog.setDialogContent({
-          title: dialog.getType().type == "editstd" ? "Editar um paciente" : "Adicionar um paciente",
+          title: dialog.getType().type == "editstd" ? "Editar um staff" : "Adicionar um staff",
           type: "confirmstd",
           content: dialog.getType().type == "editstd" ? editMessage : addMessage,
           action: addEditUserAction,

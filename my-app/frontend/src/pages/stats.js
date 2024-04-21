@@ -1,9 +1,5 @@
-import Head from "next/head";
 import {Box, Button, Container, Grid, Stack, Typography} from "@mui/material";
 import {Layout as DashboardLayout} from "src/layouts/dashboard/layout";
-import {OverviewDB} from "src/sections/overview/overview-db";
-import InfoIcon from "@mui/icons-material/Info";
-import {OverviewTraffic} from "src/sections/overview/overview-traffic";
 import {useEffect, useState} from "react";
 import {useDialog} from "@/contexts/dialog-context";
 import {DataGrid, GridActionsCellItem} from "@mui/x-data-grid";
