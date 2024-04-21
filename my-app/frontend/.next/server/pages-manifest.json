@@ -1,9 +1,10 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/": "pages/index.js",
+  "/api/patients": "pages/api/patients.js",
+  "/auth/login": "pages/auth/login.js",
   "/stats": "pages/stats.js",
-  "/exercises": "pages/exercises.js",
-  "/workouts-history": "pages/workouts-history.js",
-  "/api/equipments": "pages/api/equipments.js"
+  "/api/staff": "pages/api/staff.js"
 }
