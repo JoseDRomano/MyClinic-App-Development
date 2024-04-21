@@ -3,7 +3,13 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/stats": "pages/stats.js",
+<<<<<<< HEAD
   "/students": "pages/students.js",
   "/api/patients": "pages/api/patients.js",
   "/api/staff": "pages/api/staff.js"
+=======
+  "/api/patients": "pages/api/patients.js",
+  "/api/staff": "pages/api/staff.js",
+  "/students": "pages/students.js"
+>>>>>>> 08c43f2afab3e00e1be26b4fd3cfb8dffd1d911d
 }

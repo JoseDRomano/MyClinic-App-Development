@@ -24,10 +24,10 @@ export default async function handler(req, res) {
 }
 
 async function addStaff(req) {
-    const {name, role, joinDate, email, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
+    const {name, joinDate, job, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
     await connectMongoDB();
     //const password = await sendEmail(name,email);
-    await Staff.create({name, role, joinDate, email, password: password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
+    await Staff.create({name, joinDate, job, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
 }
 
 async function deleteStaff(req) {
@@ -37,7 +37,7 @@ async function deleteStaff(req) {
 }
 
 async function updateStaff(req) {
-    const {id, name, role, joinDate, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
+    const {id, name, joinDate, job, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
     await connectMongoDB();
-    await Staff.findByIdAndUpdate(id, {name, role, joinDate, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
+    await Staff.findByIdAndUpdate(id, {name, joinDate, job, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
 }
