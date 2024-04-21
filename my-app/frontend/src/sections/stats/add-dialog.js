@@ -74,7 +74,7 @@ export const AddUserDialog = () => {
         if (dialog.getType().type == "editstd") values.id = dialog.getType().user._id;
 
         const addEditUserAction = () => {
-          fetch("/api/patients", {
+          fetch("/api/staff", {
             method: dialog.getType().type == "editstd" ? "PUT" : "POST",
             headers: {
               "Content-Type": "application/json",
@@ -276,7 +276,7 @@ export const AddUserDialog = () => {
             type="submit"
             variant="contained"
           >
-            {dialog.getType().type == "editstd" ? "Editar" : "Adicionar"} paciente
+            {dialog.getType().type == "editstd" ? "Editar" : "Adicionar"} staff
           </Button>
         </form>
       </DialogContent>
