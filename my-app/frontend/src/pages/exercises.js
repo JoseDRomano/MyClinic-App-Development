@@ -81,9 +81,17 @@ const ExercisesPage = () => {
   };
 
   const columns = [
-    { field: "name", headerName: "Check-In", width: 150 },
-    { field: "patient", headerName: "Paciente", width: 200 },
-    { field: "date", headerName: "Data de Entrada", width: 100 },
+    { field: "patient_name", headerName: "Nome do Paciente", width: 200 },
+    { field: "citizenId", headerName: "Paciente", width: 150 },
+    { field: "healthId", headerName: "Data de Entrada", width: 100 },
+    { field: "sex", headerName: "Sexo", width: 100 },
+    { field: "gender", headerName: "Género", width: 100 },
+    { field: "birthDate", headerName: "Data de Nascimento", width: 100 },
+    { field: "address", headerName: "Morada", width: 100 },
+    { field: "entry_hour", headerName: "Hora de Entrada", width: 100 },
+    { field: "symptoms", headerName: "Sintomas", width: 100 },
+    { field: "priority", headerName: "Prioridade", width: 100 },
+    { field: "state", headerName: "Estado", width: 100 },
     {
       field: "actions",
       type: "actions",

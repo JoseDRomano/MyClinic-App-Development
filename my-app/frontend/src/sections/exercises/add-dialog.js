@@ -50,15 +50,15 @@ export const AddExerciseDialog = () => {
         validationSchema: Yup.object({
             patient_name: Yup.string().max(255).required('O nome do paciente é necessário'),
             citizenId: Yup.string().max(255).required('O nº do cartão de cidadão é necessário'),
-            healthId: Yup.string().required('O nº de utente é necessário'),
-            sex: Yup.string().required("É necessário adicionar o sexo do paciente"),
-            gender: Yup.string().required("É necessário adicionar o género do paciente"),
-            birthDate: Yup.string().required("Data de check-in é necessário"),
-            address: Yup.string().required("Morada é necessário"),
-            entry_hour: Yup.string().required("Hora de entrada é necessário"),
-            symptoms: Yup.string().required("É necessário adicionar sintomas"),
-            priority: Yup.string().required("Necessário adicionar prioridade"),
-            state: Yup.string().required("É necessário adicionar um estado")
+            healthId: Yup.string().max(255).required('O nº de utente é necessário'),
+            sex: Yup.string().max(255).required("É necessário adicionar o sexo do paciente"),
+            gender: Yup.string().max(255).required("É necessário adicionar o género do paciente"),
+            birthDate: Yup.string().max(255).required("Data de check-in é necessário"),
+            address: Yup.string().max(255).required("Morada é necessário"),
+            entry_hour: Yup.string().max(255).required("Hora de entrada é necessário"),
+            symptoms: Yup.string().max(255).required("É necessário adicionar sintomas"),
+            priority: Yup.string().max(255).required("Necessário adicionar prioridade"),
+            state: Yup.string().max(255).required("É necessário adicionar um estado")
         }),
 
         onSubmit: async (values, helpers) => {
