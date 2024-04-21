@@ -22,10 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/stats": [
+    "/exercises": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/stats.js"
+      "static/chunks/pages/exercises.js"
     ],
     "/workouts-history": [
       "static/chunks/webpack.js",

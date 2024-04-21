@@ -75,8 +75,8 @@ const WorkoutHistoryPage = () => {
       width: 150,
       renderCell: (params) => formatCreatedDate(params.value),
     },
-    { field: "eqName", headerName: "Nome do Equipamento", width: 160 },
-    { field: "maintenance", headerName: "Última manutenção", width: 150 },
+    { field: "equipment", headerName: "Nome do Equipamento", width: 160 },
+    { field: "lastMaintenance", headerName: "Última manutenção", width: 150 },
     { field: "availability", headerName: "Disponibilidade", width: 150 },
     {
       field: "actions",

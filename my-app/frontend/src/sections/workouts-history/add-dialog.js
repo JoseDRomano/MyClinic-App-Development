@@ -38,13 +38,13 @@ export const AddWorkoutHistoryDialog = () => {
 
   const formik = useFormik({
     initialValues: {
-      eqName: "",
-      maintenance: "",
+      equipment: "",
+      lastlastMaintenance: "",
       availability: "",
     },
     validationSchema: Yup.object().shape({
-      eqName: Yup.string().required("Nome do Equipamento é obrigatório"),
-      maintenance: Yup.date().required("Data de Manutenção é obrigatório"),
+      equipment: Yup.string().required("Nome do Equipamento é obrigatório"),
+      lastMaintenance: Yup.date().required("Data de Manutenção é obrigatório"),
       availability: Yup.boolean().required("Disponibilidade é obrigatório"),
     }),
 
@@ -76,12 +76,12 @@ export const AddWorkoutHistoryDialog = () => {
 
   useEffect(() => {
     if (dialog.getType().type == "editwkh") {
-      formik.setFieldValue("eqName", dialog.getType().workout.eqName);
-      formik.setFieldValue("maintenance", dialog.getType().workout.maintenance);
+      formik.setFieldValue("equipment", dialog.getType().workout.equipment);
+      formik.setFieldValue("lastMaintenance", dialog.getType().workout.lastMaintenance);
       formik.setFieldValue("availability", dialog.getType().workout.availability);
     } else {
-      formik.setFieldValue("eqName", "");
-      formik.setFieldValue("maintenance", "");
+      formik.setFieldValue("equipment", "");
+      formik.setFieldValue("lastMaintenance", "");
       formik.setFieldValue("availability", "");
     }
   }, [dialog]);
@@ -93,24 +93,24 @@ export const AddWorkoutHistoryDialog = () => {
         <form onSubmit={formik.handleSubmit}>
           <Stack spacing={2}>
             <TextField
-              error={!!(formik.touched.eqName && formik.errors.eqName)}
+              error={!!(formik.touched.equipment && formik.errors.equipment)}
               fullWidth
-              helperText={formik.touched.eqName && formik.errors.eqName}
+              helperText={formik.touched.equipment && formik.errors.equipment}
               label="Nome do Equipamento"
-              name="eqName"
+              name="equipment"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.eqName}
+              value={formik.values.equipment}
             />
             <TextField
-              error={!!(formik.touched.maintenance && formik.errors.maintenance)}
+              error={!!(formik.touched.lastMaintenance && formik.errors.lastMaintenance)}
               fullWidth
-              helperText={formik.touched.maintenance && formik.errors.maintenance}
+              helperText={formik.touched.lastMaintenance && formik.errors.lastMaintenance}
               label="Data de Manutenção"
-              name="maintenance"
+              name="lastMaintenance"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.maintenance}
+              value={formik.values.lastlastMaintenance}
               type="date"
             />
             <TextField

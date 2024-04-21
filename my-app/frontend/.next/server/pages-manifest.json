@@ -3,6 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/stats": "pages/stats.js",
+  "/exercises": "pages/exercises.js",
   "/workouts-history": "pages/workouts-history.js",
-  "/workouts": "pages/workouts.js"
+  "/api/equipments": "pages/api/equipments.js"
 }

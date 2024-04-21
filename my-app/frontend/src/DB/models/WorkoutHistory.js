@@ -9,17 +9,15 @@ import mongoose, {Schema} from "mongoose";
  */
 const workoutHistorySchema = new Schema(
     {
-        workoutPlan: String,
-        date: String,
-        student: String,
-        duration: Number,
-        localization: String,
+        equipment: String,
+        lastMaintenance: String,
+        availability: String
     },
     {
         timestamps: true,
     }
 );
 
-const WorkoutHistory = mongoose.models?.WorkoutHistory || mongoose.model("WorkoutHistory", workoutHistorySchema);
+const WorkoutHistory = mongoose.models?.Equipments || mongoose.model("Equipments", workoutHistorySchema);
 
 export default WorkoutHistory;
