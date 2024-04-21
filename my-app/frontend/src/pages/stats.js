@@ -66,6 +66,60 @@ const Stats = () => {
             renderCell: (params) => params.value
         },
         {
+            field: "email",
+            headerName: "Email",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "password",
+            headerName: "Password",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "phoneNumber",
+            headerName: "Contacto Telefónico",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "citizenId",
+            headerName: "Nº Cartão de Cidadão",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "healthId",
+            headerName: "Nº de Utente",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "sex",
+            headerName: "Sexo",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "gender",
+            headerName: "Género",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "birthDate",
+            headerName: "Data de Nascimento",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
+            field: "address",
+            headerName: "Morada",
+            width: 300,
+            renderCell: (params) => params.value
+        },
+        {
             field: "actions",
             type: "actions",
             headerName: "Editar/Remover",

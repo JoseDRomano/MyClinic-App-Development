@@ -49,7 +49,16 @@ export const AddUserDialog = () => {
     validationSchema: Yup.object({
       name: Yup.string().max(255).required("O nome é necessário"),
       joinDate: Yup.date().required("É necessária a data de adesão."),
-      job: Yup.string().required("É necessária a profissão.")
+      job: Yup.string().required("É necessária a profissão."),
+      email: Yup.string().required("É necessário um email."),
+      password: Yup.string().required("É necessário uma password."),
+      phoneNumber: Yup.string().required("É necessário um contacto telefónico."),
+      citizenId: Yup.string().required("É necessário o nº do cartão de cidadão."),
+      healthId: Yup.string().required("É necessário o nº do utente."),
+      sex: Yup.string().required("É necessário o sexo do staff."),
+      gender: Yup.string().required("É necessário género."),
+      birthDate: Yup.date().required("É necessária data de nascimento."),
+      address: Yup.string().required("É necessária morada.")
     }),
     onSubmit: async (values, helpers) => {
       //console.log(values);
@@ -178,6 +187,7 @@ export const AddUserDialog = () => {
                 helperText={formik.touched.password && formik.errors.password}
                 label="Password"
                 name="password"
+                type="password"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.password}
@@ -238,6 +248,7 @@ export const AddUserDialog = () => {
                 helperText={formik.touched.birthDate && formik.errors.birthDate}
                 label="Birth Date"
                 name="birthDate"
+                type="date"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.birthDate}
