@@ -140,7 +140,7 @@ return (
                     }}
                     onClick={() => {
                         dialog.setDialogContent({
-                            title: "Adicionar um novo Profissional",
+                            title: "Adicionar um novo profissional",
                             type: "createwk",
                         })
                     }}

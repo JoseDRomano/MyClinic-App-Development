@@ -35,6 +35,15 @@ export const AddUserDialog = () => {
       name: "",
       joinDate: "",
       job: "",
+      email: "",
+      password: "",
+      phoneNumber: "",
+      citizenId: "",
+      healthId: "",
+      sex: "",
+      gender: "",
+      birthDate: "",
+      address: "",
       submit: null,
     },
     validationSchema: Yup.object({
@@ -91,10 +100,28 @@ export const AddUserDialog = () => {
       formik.setFieldValue("name", dialog.getType().user.name);
       formik.setFieldValue("joinDate", dialog.getType().user.joinDate);
       formik.setFieldValue("job", dialog.getType().user.job);
+      formik.setFieldValue("email", dialog.getType().user.email);
+      formik.setFieldValue("password", dialog.getType().user.password);
+      formik.setFieldValue("phoneNumber", dialog.getType().user.phoneNumber);
+      formik.setFieldValue("citizenId", dialog.getType().user.citizenId);
+      formik.setFieldValue("healthId", dialog.getType().user.healthId);
+      formik.setFieldValue("sex", dialog.getType().user.sex);
+      formik.setFieldValue("gender", dialog.getType().user.gender);
+      formik.setFieldValue("birthDate", dialog.getType().user.birthDate);
+      formik.setFieldValue("address", dialog.getType().user.address);
     } else {
       formik.setFieldValue("name", "");
       formik.setFieldValue("joinDate", "");
       formik.setFieldValue("job", "");
+      formik.setFieldValue("email", "");
+      formik.setFieldValue("password", "");
+      formik.setFieldValue("phoneNumber", "");
+      formik.setFieldValue("citizenId", "");
+      formik.setFieldValue("healthId", "");
+      formik.setFieldValue("sex", "");
+      formik.setFieldValue("gender", "");
+      formik.setFieldValue("birthDate", "");
+      formik.setFieldValue("address", "");
     }
   }, [dialog]);
 
@@ -134,6 +161,96 @@ export const AddUserDialog = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.job}
+            />
+            <TextField
+                error={!!(formik.touched.email && formik.errors.email)}
+                fullWidth
+                helperText={formik.touched.email && formik.errors.email}
+                label="E-Mail"
+                name="email"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.email}
+            />
+            <TextField
+                error={!!(formik.touched.password && formik.errors.password)}
+                fullWidth
+                helperText={formik.touched.password && formik.errors.password}
+                label="Password"
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.password}
+            />
+            <TextField
+                error={!!(formik.touched.phoneNumber && formik.errors.phoneNumber)}
+                fullWidth
+                helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                label="Phone Number"
+                name="phoneNumber"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.phoneNumber}
+            />
+            <TextField
+                error={!!(formik.touched.citizenId && formik.errors.citizenId)}
+                fullWidth
+                helperText={formik.touched.citizenId && formik.errors.citizenId}
+                label="Citizen ID"
+                name="citizenId"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.citizenId}
+            />
+            <TextField
+                error={!!(formik.touched.healthId && formik.errors.healthId)}
+                fullWidth
+                helperText={formik.touched.healthId && formik.errors.healthId}
+                label="Health ID"
+                name="healthId"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.healthId}
+            />
+            <TextField
+                error={!!(formik.touched.sex && formik.errors.sex)}
+                fullWidth
+                helperText={formik.touched.sex && formik.errors.sex}
+                label="Sex"
+                name="sex"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.sex}
+            />
+            <TextField
+                error={!!(formik.touched.gender && formik.errors.gender)}
+                fullWidth
+                helperText={formik.touched.gender && formik.errors.gender}
+                label="Gender"
+                name="gender"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.gender}
+            />
+            <TextField
+                error={!!(formik.touched.birthDate && formik.errors.birthDate)}
+                fullWidth
+                helperText={formik.touched.birthDate && formik.errors.birthDate}
+                label="Birth Date"
+                name="birthDate"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.birthDate}
+            />
+            <TextField
+                error={!!(formik.touched.address && formik.errors.address)}
+                fullWidth
+                helperText={formik.touched.address && formik.errors.address}
+                label="Address"
+                name="address"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.address}
             />
           </Stack>
           {formik.errors.submit && (
