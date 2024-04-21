@@ -31,9 +31,9 @@ async function addExercise(req) {
 }
 
 async function updateExercise(req) {
-    const {id, name, pacient, date} = req.body;
+    const {id, name, patient, date} = req.body;
     await connectMongoDB();
-    await Exercises.findByIdAndUpdate({_id: id}, {name, pacient, date});
+    await Exercises.findByIdAndUpdate({_id: id}, {name, patient, date});
 }
 
 async function deleteExercise(req){

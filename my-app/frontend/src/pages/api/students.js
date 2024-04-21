@@ -62,7 +62,7 @@ async function sendEmail(name,email){
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>TrainWith.Me - Novo Registo</title>
+            <title>My Clinic - Novo Registo</title>
         </head>
         <body style="font-family: 'Arial', sans-serif;">
         
@@ -70,26 +70,26 @@ async function sendEmail(name,email){
             <tr>
             <td style="background-color: rgb(198, 156, 109); padding: 20px; text-align: center; color: #ffffff;">
                 <img src='https://trainwithme.vercel.app/_next/image?url=%2Flogo192.png&w=128&q=75' alt="Train With Me Logo" style="max-width: 100px; height: auto;">
-                <h2>TrainWith.Me</h2>
+                <h2>My Clinic</h2>
                 <p>O seu novo registo foi bem-sucedido!</p>
             </td>
         </tr>   
                 <tr>
                     <td style="padding: 20px;">
                         <p>Olá ${name},</p>
-                        <p>Parabéns! O seu registo na aplicação "TrainWith.Me" foi concluído com sucesso. A seguir, encontrará os detalhes da sua conta:</p>
+                        <p>Parabéns! O seu registo na aplicação "My Clinic" foi concluído com sucesso. A seguir, encontrará os detalhes da sua conta:</p>
                         <ul>
                             <li><strong>Email:</strong>${email}</li>
                             <li><strong>Palavra-passe:</strong>${password}</li>
                         </ul>
-                        <p>Agora, podes utilizar estas credenciais para fazer o login na app <a href="https://trainwithme.vercel.app/">aqui</a>. Recomendamos que altere a sua palavra-passe após o primeiro acesso.</p>
+                        <p>Agora, podes utilizar estas credenciais para fazer o login na app <a href="https://myclinic.com/">aqui</a>. Recomendamos que altere a sua palavra-passe após o primeiro acesso.</p>
                         <p>Se precisar de ajuda ou tiver alguma dúvida, não hesite em contactar-nos.</p>
-                        <p>Obrigado por escolher o "TrainWith.Me"!</p>
+                        <p>Obrigado por escolher o "My Clinic"!</p>
                     </td>
                 </tr>
                 <tr>
                     <td style="background-color: #f2f2f2; padding: 20px; text-align: center;">
-                        <p>&copy; 2023 TrainWith.Me. Todos os direitos reservados.</p><br>
+                        <p>&copy; 2024 My Clinic. Todos os direitos reservados.</p><br>
                         <p>Ps: é apenas placeholder, pois o client ainda não está implementado</p>
                     </td>
                 </tr>
@@ -104,10 +104,10 @@ async function sendEmail(name,email){
 }
 
 async function addStudent(req) {
-    const {name, email, objective, weight, height, bodyFat, photo} = await req.body;
+    const {name, email, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
     await connectMongoDB();
     const password = await sendEmail(name,email);
-    await Students.create({name, email, password: password, objective, weight, height, bodyFat, photo});
+    await Students.create({name, email, password: password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
 }
 
 async function deleteStudent(req) {
@@ -117,9 +117,9 @@ async function deleteStudent(req) {
 }
 
 async function updateStudent(req) {
-    const {id, name, email, password, objective, weight, height, bodyFat, photo} = await req.body;
+    const {id, name, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address} = await req.body;
     await connectMongoDB();
-    await Students.findByIdAndUpdate(id, {name, email, password, objective, weight, height, bodyFat, photo});
+    await Students.findByIdAndUpdate(id, {name, email, password, phoneNumber, citizenId, healthId, sex, gender, birthDate, address});
 }
 
 

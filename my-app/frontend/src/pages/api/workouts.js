@@ -26,15 +26,15 @@ export default async function handler(req, res) {
 }
 
 async function addWorkout(req) {
-    const {name, exerciseList, students, duration} = await req.body;
+    const {name, duration, staff, date} = await req.body;
     await connectMongoDB();
-    await Workout.create({name, exerciseList, students, duration});
+    await Workout.create({name, duration, staff, date});
 }
 
 async function updateWorkout(req){
-    const {id, name, exerciseList, students, duration} = await req.body;
+    const {id, name, duration, staff, date} = await req.body;
     await connectMongoDB();
-    await Workout.findByIdAndUpdate({_id: id}, {name, exerciseList, students, duration});
+    await Workout.findByIdAndUpdate({_id: id}, {name, duration, staff, date});
 }
 
 async function deleteWorkout(req) {

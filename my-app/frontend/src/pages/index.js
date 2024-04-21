@@ -12,7 +12,7 @@ const Page = () => {
     const [students, setStudents] = useState([]);
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch('/api/pacients', {
+            let response = await fetch('/api/patients', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

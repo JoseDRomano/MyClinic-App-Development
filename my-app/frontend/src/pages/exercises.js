@@ -82,7 +82,7 @@ const ExercisesPage = () => {
 
   const columns = [
     { field: "name", headerName: "Check-In", width: 150 },
-    { field: "pacient", headerName: "Paciente", width: 200 },
+    { field: "patient", headerName: "Paciente", width: 200 },
     { field: "date", headerName: "Data de Entrada", width: 100 },
     {
       field: "actions",

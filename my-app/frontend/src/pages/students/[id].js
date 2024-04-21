@@ -12,7 +12,7 @@ const StudentPage = (params) => {
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch(`/api/pacient?id=${router.query.id}`, {
+            let response = await fetch(`/api/patient?id=${router.query.id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -127,7 +127,7 @@ export const AddExerciseDialog = () => {
                         fullWidth
                         helperText={formik.touched.patient_name && formik.errors.patient_name}
                         label="Paciente"
-                        name="pacient"
+                        name="patient"
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         value={formik.values.patient_name}
