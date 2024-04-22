@@ -26,15 +26,15 @@ export default async function handler(req, res) {
 }
 
 async function addAppointment(req) {
-    const {staffId, patientId, date, time, location, extraInfo} = await req.body;
+    const {name, staffId, patientId, date, time, location, extraInfo} = await req.body;
     await connectMongoDB();
-    await Appointment.create({staffId, patientId, date, time, location, extraInfo});
+    await Appointment.create({name, staffId, patientId, date, time, location, extraInfo});
 }
 
 async function updateAppointment(req){
-    const {id, staffId, patientId, date, time, location, extraInfo} = await req.body;
+    const {id, name, staffId, patientId, date, time, location, extraInfo} = await req.body;
     await connectMongoDB();
-    await Appointment.findByIdAndUpdate({_id: id}, {staffId, patientId, date, time, location, extraInfo});
+    await Appointment.findByIdAndUpdate({_id: id}, {name, staffId, patientId, date, time, location, extraInfo});
 }
 
 async function deleteAppointment(req) {

@@ -28,21 +28,27 @@ const MenuProps = {
 
 export const AddWorkoutDialog = () => {
   const dialog = useDialog();
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       name: "",
-      duration: "",
-      staff: "",
+      staffId: "",
+      patientId: "",
       date: "",
+      time: "",
+      location: "",
+      extraInfo: "",
       submit: null,
     },
     validationSchema: Yup.object({
       name: Yup.string().max(255).required("Campo obrigatório"),
-      duration: Yup.number()
+      time: Yup.number()
         .min(1, "Necessário duração: min -> 1")
         .required("Campo obrigatório"),
-      staff: Yup.string().max(255).required("Campo obrigatório"),
-      date: Yup.date().required("Campo obrigatório")
+      staffId: Yup.string().max(255).required("Campo obrigatório"),
+      patientId: Yup.string().max(255).required("Campo obrigatório"),
+      date: Yup.string().max(255).required("Campo obrigatório"),
+      location: Yup.string().max(255).required("Campo obrigatório")
     }),
 
     onSubmit: async (values, helpers) => {
@@ -60,7 +66,7 @@ export const AddWorkoutDialog = () => {
         if (dialog.getType().type == "editstd") values.id = dialog.getType().user._id;
 
         const addEditUserAction = () => {
-          fetch("/api/check-ins", {
+          fetch("/api/appointments", {
             method: dialog.getType().type == "editstd" ? "PUT" : "POST",
             headers: {
               "Content-Type": "application/json",
@@ -94,14 +100,20 @@ export const AddWorkoutDialog = () => {
   useEffect(() => {
     if (dialog.getType().type == "editstd") {
       formik.setFieldValue("name", dialog.getType().user.name);
-      formik.setFieldValue("duration", dialog.getType().user.duration);
-      formik.setFieldValue("staff", dialog.getType().user.staff);
+      formik.setFieldValue("staffId", dialog.getType().user.staffId);
+      formik.setFieldValue("patientId", dialog.getType().user.patientId);
       formik.setFieldValue("date", dialog.getType().user.date);
+      formik.setFieldValue("time", dialog.getType().user.time);
+      formik.setFieldValue("location", dialog.getType().user.location);
+      formik.setFieldValue("extraInfo", dialog.getType().user.extraInfo);
     } else {
       formik.setFieldValue("name", "");
-      formik.setFieldValue("duration", "");
-      formik.setFieldValue("staff", "");
+      formik.setFieldValue("staffId", "");
+      formik.setFieldValue("patientId", "");
       formik.setFieldValue("date", "");
+      formik.setFieldValue("time", "");
+      formik.setFieldValue("location", "");
+      formik.setFieldValue("extraInfo", "");
     }
   }, [dialog]);
 
@@ -123,25 +135,25 @@ export const AddWorkoutDialog = () => {
             />
 
             <TextField
-                error={!!(formik.touched.duration && formik.errors.duration)}
+                error={!!(formik.touched.staffId && formik.errors.staffId)}
                 fullWidth
-                helperText={formik.touched.duration && formik.errors.duration}
-                label="Duração"
-                name="duration"
+                helperText={formik.touched.staffId && formik.errors.staffId}
+                label="Staff ID"
+                name="staffId"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                value={formik.values.duration}
+                value={formik.values.staffId}
             />
 
             <TextField
-              error={!!(formik.touched.staff && formik.errors.staff)}
+              error={!!(formik.touched.patientId && formik.errors.patientId)}
               fullWidth
-              helperText={formik.touched.staff && formik.errors.staff}
-              label="Profissional"
-              name="staff"
+              helperText={formik.touched.patientId && formik.errors.patientId}
+              label="Patient ID"
+              name="patientId"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.staff}
+              value={formik.values.patientId}
             />
 
             <TextField
@@ -154,6 +166,39 @@ export const AddWorkoutDialog = () => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.date}
+            />
+
+            <TextField
+              error={!!(formik.touched.time && formik.errors.time)}
+              fullWidth
+              helperText={formik.touched.time && formik.errors.time}
+              label="Tempo"
+              name="time"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.time}
+            />
+
+            <TextField
+              error={!!(formik.touched.location && formik.errors.location)}
+              fullWidth
+              helperText={formik.touched.location && formik.errors.location}
+              label="Localização"
+              name="location"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.location}
+            />
+
+            <TextField
+              error={!!(formik.touched.extraInfo && formik.errors.extraInfo)}
+              fullWidth
+              helperText={formik.touched.extraInfo && formik.errors.extraInfo}
+              label="Informação Adicional"
+              name="extraInfo"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.extraInfo}
             />
 
           </Stack>

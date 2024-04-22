@@ -2,6 +2,7 @@ import mongoose, {Schema} from "mongoose";
 
 const appointmentsSchema = new Schema(
     {
+        name: {type: String, required: true},
         staffId: {type: String, required: true},
         patientId: {type: String, required: true},
         date: {type: String, required: true},

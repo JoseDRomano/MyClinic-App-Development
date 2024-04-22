@@ -2,8 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/students": "pages/students.js",
+  "/workouts": "pages/workouts.js",
+  "/api/appointments": "pages/api/appointments.js",
   "/api/staff": "pages/api/staff.js",
-  "/stats": "pages/stats.js",
-  "/exercises": "pages/exercises.js",
-  "/api/check-ins": "pages/api/check-ins.js"
+  "/stats": "pages/stats.js"
 }
