@@ -1,7 +1,7 @@
 {
-  "name": "trainwithme",
+  "name": "myclinic",
   "version": "1.0.0",
-  "author": "ipm-group",
+  "author": "msp-group",
   "licence": "MIT",
   "scripts": {
     "dev": "next",
