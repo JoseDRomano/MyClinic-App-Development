@@ -118,7 +118,7 @@ export const AuthProvider = (props) => {
             id: '5e86809283e28b96d2d38537',
             avatar: '/assets/avatars/avatar-joaquim-alberto.png',
             name: 'Joao Anacleto',
-            email: 'joaquimalberto@trainwith.me'
+            email: 'joaquimalberto@myclinic.me'
         };
 
         dispatch({
@@ -128,7 +128,7 @@ export const AuthProvider = (props) => {
     };
 
     const signIn = async (email, password) => {
-        if (email !== 'joaquimalberto@trainwith.me' || password !== 'Password123!') {
+        if (email !== 'joaquimalberto@myclinic.me' || password !== 'Password123!') {
             throw new Error('Please check your email and password');
         }
 
