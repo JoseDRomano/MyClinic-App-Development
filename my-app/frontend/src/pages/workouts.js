@@ -49,14 +49,14 @@ const WorkoutsPage = () => {
   const columns = [
     { field: "name", headerName: "Nome da Consulta", width: 250 },
     {
-      field: "duration",
-      headerName: "Duração",
-      width: 150,
-      renderCell: (params) => params.value + " minutos",
+      field: "staffId",
+      headerName: "Médico/Técnico",
+      width: 300
+      
     },
     {
-      field: "staff",
-      headerName: "Médico/Técnico",
+      field: "patientId",
+      headerName: "Paciente",
       width: 300,
       renderCell: (params) => params.value
     },
@@ -66,6 +66,24 @@ const WorkoutsPage = () => {
       width: "150",
       sortable: false,
       renderCell: (params) => params.value
+    },
+    {
+      field: "time",
+      headerName: "Duração",
+      width: 150,
+      renderCell: (params) => params.value + " minutos",
+    },
+    {
+      field: "location",
+      headerName: "Local",
+      width: 150,
+      renderCell: (params) => params.value ,
+    },
+    {
+      field: "extraInfo",
+      headerName: "Informação",
+      width: 150,
+      renderCell: (params) => params.value,
     },
     {
       field: "actions",
