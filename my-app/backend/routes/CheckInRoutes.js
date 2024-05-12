@@ -42,7 +42,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const checkIn = await CheckIn.findByIdAndUpdate(request.params.id, newCheckIn);
-        return response.status(200).send(checkIn);
+        return response.status(200).send(newCheckIn);
 
     } catch (error) {
         console.log(error);

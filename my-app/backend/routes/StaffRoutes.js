@@ -60,7 +60,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const staff = await Staff.findByIdAndUpdate(request.params.id, newStaff);
-        return response.status(200).send(staff);
+        return response.status(200).send(newStaff);
 
     } catch (error) {
         console.log(error);

@@ -50,7 +50,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const appointment = await Appointment.findByIdAndUpdate(request.params.id, newAppointment);
-        return response.status(200).send(appointment);
+        return response.status(200).send(newAppointment);
 
     } catch (error) {
         console.log(error);

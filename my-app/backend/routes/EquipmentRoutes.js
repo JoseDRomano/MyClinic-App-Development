@@ -42,7 +42,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const equipment = await Equipment.findByIdAndUpdate(request.params.id, newEquipment);
-        return response.status(200).send(equipment);
+        return response.status(200).send(newEquipment);
 
     } catch (error) {
         console.log(error);

@@ -56,7 +56,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const patient = await Patient.findByIdAndUpdate(request.params.id, newPatient);
-        return response.status(200).send(patient);
+        return response.status(200).send(newPatient);
 
     } catch (error) {
         console.log(error);

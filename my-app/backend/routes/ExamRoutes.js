@@ -52,7 +52,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const exam = await Exam.findByIdAndUpdate(request.params.id, newExam);
-        return response.status(200).send(exam);
+        return response.status(200).send(newExam);
 
     } catch (error) {
         console.log(error);
