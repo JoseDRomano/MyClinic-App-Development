@@ -20,9 +20,9 @@ router.post('/', async (request, response) => {
     try {
         const newStaff = {
             name: request.body.name,
-            role: request.body.role,
+            joinDate: request.body.joinDate,
+            job: request.body.job,
             email: request.body.email,
-            // TODO: hash password!
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
@@ -34,7 +34,7 @@ router.post('/', async (request, response) => {
         }
 
         const staff = await Staff.create(newStaff);
-        return response.status(200).send(staff) ;
+        return response.status(200).send(staff);
 
     } catch (error) {
         console.log(error);
@@ -46,9 +46,9 @@ router.put('/:id', async (request, response) => {
     try {
         const newStaff = {
             name: request.body.name,
-            role: request.body.role,
+            joinDate: request.body.joinDate,
+            job: request.body.job,
             email: request.body.email,
-            // TODO: hash password!
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
@@ -60,7 +60,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const staff = await Staff.findByIdAndUpdate(request.params.id, newStaff);
-        return response.status(200).send(newStaff);
+        return response.status(200).send(staff);
 
     } catch (error) {
         console.log(error);

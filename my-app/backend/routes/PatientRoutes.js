@@ -21,7 +21,6 @@ router.post('/', async (request, response) => {
         const newPatient = {
             name: request.body.name,
             email: request.body.email,
-            // TODO: hash password!
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
@@ -46,7 +45,6 @@ router.put('/:id', async (request, response) => {
         const newPatient = {
             name: request.body.name,
             email: request.body.email,
-            // TODO: hash password!
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
@@ -58,7 +56,7 @@ router.put('/:id', async (request, response) => {
         }
         
         const patient = await Patient.findByIdAndUpdate(request.params.id, newPatient);
-        return response.status(200).send(newPatient);
+        return response.status(200).send(patient);
 
     } catch (error) {
         console.log(error);
