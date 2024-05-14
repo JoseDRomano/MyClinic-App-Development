@@ -29,6 +29,7 @@ router.post('/', async (request, response) => {
     try {
         const newCheckIn = {
             activityId: request.body.activityId,
+            type: request.body.type,
             date: request.body.date,
             time: request.body.time
         }
@@ -46,6 +47,7 @@ router.put('/:id', async (request, response) => {
     try {
         const newCheckIn = {
             activityId: request.body.activityId,
+            type: request.body.type,
             date: request.body.date,
             time: request.body.time
         }

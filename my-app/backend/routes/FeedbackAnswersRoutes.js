@@ -28,10 +28,11 @@ router.get('/:id', async (request, response) => {
 router.post('/', async (request, response) => {
     try {
         const newFeedbackAnswers = {
-            patientId: request.body.name,
+            questionsId: request.body.questionsId,
+            patientId: request.body.patientId,
             date: request.body.date,
             time: request.body.time,
-            answers: request.body.questions,
+            answers: request.body.answers,
             extraInfo: request.body.extraInfo
         }
 
@@ -47,10 +48,11 @@ router.post('/', async (request, response) => {
 router.put('/:id', async (request, response) => {
     try {
         const newFeedbackAnswers = {
-            patientId: request.body.name,
+            questionsId: request.body.questionsId,
+            patientId: request.body.patientId,
             date: request.body.date,
             time: request.body.time,
-            answers: request.body.questions,
+            answers: request.body.answers,
             extraInfo: request.body.extraInfo
         }
         

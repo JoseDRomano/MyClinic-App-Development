@@ -9,15 +9,26 @@ import { CheckIn } from '../models/CheckInModel.js';
 const router = express.Router();
 
 // get patient history (appointments, exams, check-ins)
-router.get('/:id', async (request, response) => {
+router.get('/:id/history', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const appointments = await Appointment.findById(id); // TODO corrigir
+        const appointments = await Appointment.where('patientId').eq(id).exec();
+        const exams = await Exam.where('patientId').eq(id).exec(); 
 
-        const exams = await Exam.findById(id); // TODO corrigir
+        // TODO: get activitiesIds and types, then search those Collections 
+        // for documents with patientId == id
+        const checkIns = await CheckIn.find();
+        /*const appointmentCol = [], examCol = [];
+        
+        checkIns.forEach((e) => checkIns.type == "appointment" ?
+                        appointmentCol.push(e) : examCol.push(e));
 
-        const checkIns = await CheckIn.findById(id); // TODO corrigir
+        checkIns = [];
+
+        appointmentCol.forEach((e) => e);
+
+        appointmentCol.forEach((e) => e);*/
 
         const patientHistory = {
             appointments: appointments,
