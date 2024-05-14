@@ -4,6 +4,15 @@ import { Equipment } from '../models/EquipmentModel.js';
 
 const router = express.Router();
 
+router.get('/', async (request, response) => {
+    try {
+        const equipments = await Equipment.find(); 
+        return response.status(200).json(equipments);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 

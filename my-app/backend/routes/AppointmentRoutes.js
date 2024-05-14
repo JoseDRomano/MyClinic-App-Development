@@ -4,6 +4,15 @@ import { Appointment } from '../models/AppointmentModel.js';
 
 const router = express.Router();
 
+router.get('/', async (request, response) => {
+    try {
+        const appointments = await Appointment.find(); 
+        return response.status(200).json(appointments);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 

@@ -4,6 +4,15 @@ import { CheckIn } from '../models/CheckInModel.js';
 
 const router = express.Router();
 
+router.get('/', async (request, response) => {
+    try {
+        const checkIns = await CheckIn.find(); 
+        return response.status(200).json(checkIns);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 

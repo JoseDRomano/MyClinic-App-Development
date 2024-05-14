@@ -1,13 +1,13 @@
 
 import express from 'express';
-import { Exam } from '../models/ExamModel.js';
+import { FeedbackQuestions } from '../models/FeedbackQuestionsModel.js';
 
 const router = express.Router();
 
 router.get('/', async (request, response) => {
     try {
-        const exams = await Exam.find(); 
-        return response.status(200).json(exams);
+        const feedbackQuestions = await FeedbackQuestions.find(); 
+        return response.status(200).json(feedbackQuestions);
     } catch (error) {
         console.log(error);
     }
@@ -17,9 +17,9 @@ router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const exam = await Exam.findById(id); 
+        const feedbackQuestions = await FeedbackQuestions.findById(id); 
 
-        return response.status(200).json(exam);
+        return response.status(200).json(feedbackQuestions);
     } catch (error) {
         console.log(error);
     }
@@ -27,19 +27,16 @@ router.get('/:id', async (request, response) => {
 
 router.post('/', async (request, response) => {
     try {
-        const newExam = {
+        const newFeedbackQuestions = {
             name: request.body.name,
-            staffId: request.body.staffId,
-            patientId: request.body.patientId,
-            equipmentIds: request.body.equipmentIds,
             date: request.body.date,
             time: request.body.time,
-            location: request.body.location,
+            questions: request.body.questions,
             extraInfo: request.body.extraInfo
         }
 
-        const exam = await Exam.create(newExam);
-        return response.status(200).send(exam);
+        const feedbackQuestions = await FeedbackQuestions.create(newFeedbackQuestions);
+        return response.status(200).send(feedbackQuestions);
 
     } catch (error) {
         console.log(error);
@@ -49,19 +46,16 @@ router.post('/', async (request, response) => {
 
 router.put('/:id', async (request, response) => {
     try {
-        const newExam = {
+        const newFeedbackQuestions = {
             name: request.body.name,
-            staffId: request.body.staffId,
-            patientId: request.body.patientId,
-            equipmentIds: request.body.equipmentIds,
             date: request.body.date,
             time: request.body.time,
-            location: request.body.location,
+            questions: request.body.questions,
             extraInfo: request.body.extraInfo
         }
         
-        const exam = await Exam.findByIdAndUpdate(request.params.id, newExam);
-        return response.status(200).send(newExam);
+        const feedbackQuestions = await FeedbackQuestions.findByIdAndUpdate(request.params.id, newFeedbackQuestions);
+        return response.status(200).send(newFeedbackQuestions);
 
     } catch (error) {
         console.log(error);
@@ -71,8 +65,8 @@ router.put('/:id', async (request, response) => {
 
 router.delete('/:id', async (request, response) => {
     try {
-        const exam = await Exam.findByIdAndDelete(request.params.id);
-        return response.status(200).send(exam);
+        const feedbackQuestions = await FeedbackQuestions.findByIdAndDelete(request.params.id);
+        return response.status(200).send(feedbackQuestions);
 
     } catch (error) {
         console.log(error);

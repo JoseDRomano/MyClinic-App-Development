@@ -9,6 +9,8 @@ import appointmentRoute from './routes/AppointmentRoutes.js';
 import checkInRoute from './routes/CheckInRoutes.js';
 import equipmentRoute from './routes/EquipmentRoutes.js';
 import examRoute from './routes/ExamRoutes.js';
+import feedbackQuestionsRoute from './routes/FeedbackQuestionsRoutes.js';
+import feedbackAnswersRoute from './routes/FeedbackAnswersRoutes.js';
 
 import cors from 'cors';
 
@@ -24,6 +26,8 @@ app.use('/appointment', appointmentRoute);
 app.use('/checkIn', checkInRoute);
 app.use('/equipment', equipmentRoute);
 app.use('/exam', examRoute);
+app.use('/feedbackQuestions', feedbackQuestionsRoute);
+app.use('/feedbackAnswers', feedbackAnswersRoute);
 
 
 mongoose.connect(MONGOURL).then(() => {
