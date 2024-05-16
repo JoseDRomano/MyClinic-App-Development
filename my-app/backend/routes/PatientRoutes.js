@@ -15,20 +15,7 @@ router.get('/:id/history', async (request, response) => {
 
         const appointments = await Appointment.where('patientId').eq(id).exec();
         const exams = await Exam.where('patientId').eq(id).exec(); 
-
-        // TODO: get activitiesIds and types, then search those Collections 
-        // for documents with patientId == id
-        const checkIns = await CheckIn.find();
-        /*const appointmentCol = [], examCol = [];
-        
-        checkIns.forEach((e) => checkIns.type == "appointment" ?
-                        appointmentCol.push(e) : examCol.push(e));
-
-        checkIns = [];
-
-        appointmentCol.forEach((e) => e);
-
-        appointmentCol.forEach((e) => e);*/
+        const checkIns = await CheckIn.where('patientId').eq(id).exec(); 
 
         const patientHistory = {
             appointments: appointments,

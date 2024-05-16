@@ -28,10 +28,14 @@ router.get('/:id', async (request, response) => {
 router.post('/', async (request, response) => {
     try {
         const newCheckIn = {
-            activityId: request.body.activityId,
-            type: request.body.type,
+            patientId: request.body.patientId,
+            staffIds: request.body.staffIds,
             date: request.body.date,
-            time: request.body.time
+            time: request.body.time,
+            symptoms: request.body.symptoms,
+            priority: request.body.priority,
+            state: request.body.state,
+            extraInfo: request.body.extraInfo
         }
 
         const checkIn = await CheckIn.create(newCheckIn);
@@ -46,10 +50,14 @@ router.post('/', async (request, response) => {
 router.put('/:id', async (request, response) => {
     try {
         const newCheckIn = {
-            activityId: request.body.activityId,
-            type: request.body.type,
+            patientId: request.body.patientId,
+            staffIds: request.body.staffIds,
             date: request.body.date,
-            time: request.body.time
+            time: request.body.time,
+            symptoms: request.body.symptoms,
+            priority: request.body.priority,
+            state: request.body.state,
+            extraInfo: request.body.extraInfo
         }
         
         const checkIn = await CheckIn.findByIdAndUpdate(request.params.id, newCheckIn);
