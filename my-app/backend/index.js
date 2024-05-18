@@ -11,8 +11,12 @@ import equipmentRoute from './routes/EquipmentRoutes.js';
 import examRoute from './routes/ExamRoutes.js';
 import feedbackQuestionsRoute from './routes/FeedbackQuestionsRoutes.js';
 import feedbackAnswersRoute from './routes/FeedbackAnswersRoutes.js';
+import inventoryRoute from './routes/InventoryRoutes.js';
+import orderRoute from './routes/OrderRoutes.js';
+import billingRoute from './routes/BillingRoutes.js';
 
 import cors from 'cors';
+
 
 
 const app = express();
@@ -28,6 +32,9 @@ app.use('/equipment', equipmentRoute);
 app.use('/exam', examRoute);
 app.use('/feedbackQuestions', feedbackQuestionsRoute);
 app.use('/feedbackAnswers', feedbackAnswersRoute);
+app.use('/inventory', inventoryRoute);
+app.use('/order', orderRoute); 
+app.use('/billing', billingRoute); 
 
 
 mongoose.connect(MONGOURL).then(() => {
