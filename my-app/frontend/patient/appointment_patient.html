@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Page</title>
+    <title>Clinic Appointments History</title>
     <style>
         /* CSS for the top bar */
         .top-bar {
@@ -35,6 +35,7 @@
             color: #fff; /* Menu item text color */
             text-decoration: none;
             font-size: 16px; /* Adjust font size as needed */
+            cursor: pointer; /* Change cursor to pointer on hover */
         }
         .submenu {
             display: none;
@@ -55,28 +56,51 @@
         }
         .submenu a:hover {
             text-decoration: underline;
+ }
+        .content {
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
 <div class="top-bar">
-    <img src="path_to_your_logo.png" alt="Clinic Logo" class="logo">
+    <img src="resources/logo.png" alt="Clinic Logo" class="logo">
     <ul class="menu">
+        <li><a href="#" onclick="showAppointments()">Appointments</a></li>
         <li>
-            <a href="#">Register</a>
+            <a href="#">History</a>
             <ul class="submenu">
-                <li><a href="#">Patient</a></li>
-                <li><a href="#">Staff</a></li>
-                <li><a href="#">Exam</a></li>
-                <li><a href="#">Appointment</a></li>
+                <li><a href="#" onclick="showExams()">Exams</a></li>
+                <li><a href="#" onclick="showBills()">Bills</a></li>
             </ul>
         </li>
-        <li><a href="#">Inventory</a></li>
+        <li><a href="#" onclick="showPrescriptions()">Prescriptions</a></li>
     </ul>
 </div>
 
-<!-- Your content goes here -->
+<div class="content" id="dynamic-content">
+    <h1>History</h1>
+    <!-- Initial content or content loaded dynamically will be placed here -->
+</div>
+
+<script>
+    function showAppointments() {
+        document.getElementById("dynamic-content").innerHTML = "<h2>Appointments</h2><p>This is where the appointments content goes.</p>";
+    }
+
+    function showExams() {
+        document.getElementById("dynamic-content").innerHTML = "<h2>Exams</h2><p>This is where the exams content goes.</p>";
+    }
+
+    function showBills() {
+        document.getElementById("dynamic-content").innerHTML = "<h2>Bills</h2><p>This is where the bills content goes.</p>";
+    }
+
+    function showPrescriptions() {
+        document.getElementById("dynamic-content").innerHTML = "<h2>Prescriptions</h2><p>This is where the prescriptions content goes.</p>";
+    }
+</script>
 
 </body>
 </html>
