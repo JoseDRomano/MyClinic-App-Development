@@ -1,6 +1,6 @@
 
 import express from 'express';
-import { Billing } from '../models/BillingModel.js';
+import { Prescription } from '../models/PrescriptionModel.js';
 
 const router = express.Router();
 
@@ -8,13 +8,13 @@ router.post('/', async (request, response) => {
     try {
         const newItem = {
             patient: request.body.patient,
-            services: request.body.services,
-            price: request.body.price,
-            payed: request.body.payed
+            doctor: request.body.doctor,
+            medicine: request.body.medicine,
+            picked: request.body.picked
             
         }
 
-        const item = await Billing.create(newItem);
+        const item = await Prescription.create(newItem);
         return response.status(200).json(item);
 
     } catch (error) {
@@ -26,7 +26,7 @@ router.get('/:id', async (request, response) => {
     try {
 
         const { id } = request.params;
-        const item = await Billing.findById(id);
+        const item = await Prescription.findById(id);
         return response.status(200).json(item);
 
     } catch (error) {
@@ -37,7 +37,7 @@ router.get('/:id', async (request, response) => {
 router.get('/', async (request, response) => {
     try {
 
-        const item = await Billing.find();
+        const item = await Prescription.find();
         return response.status(200).json(item);
 
     } catch (error) {
@@ -50,12 +50,12 @@ router.put('/:id', async (request, response) => {
 
         const newItem = {
             patient: request.body.patient,
-            services: request.body.services,
-            price: request.body.price,
-            payed: request.body.payed 
+            doctor: request.body.doctor,
+            medicine: request.body.medicine,
+            picked: request.body.picked 
         }
 
-        const item = await Billing.findByIdAndUpdate(id, newItem);
+        const item = await Prescription.findByIdAndUpdate(id, newItem);
         return response.status(200).json(item);
         
     } catch (error) {
@@ -66,15 +66,13 @@ router.put('/:id', async (request, response) => {
 router.delete('/:id', async (request, response) => {
     try {
 
-        const item = await Billing.findByIdAndDelete(request.params.id);
+        const item = await Prescription.findByIdAndDelete(request.params.id);
         return response.status(200).json(item);
         
     } catch (error) {
         console.log(error);
     }
 });
-
-//Fazer endpoint para confirmar o pagamento
 
 
 export default router;

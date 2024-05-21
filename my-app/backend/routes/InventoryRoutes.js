@@ -73,5 +73,7 @@ router.delete('/:id', async (request, response) => {
     }
 });
 
+//Fazer check de medicamentos para prescriptionModel 
+
 
 export default router;

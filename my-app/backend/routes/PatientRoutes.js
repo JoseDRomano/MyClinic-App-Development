@@ -13,11 +13,15 @@ router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const appointments = await Appointment.findById(id); // TODO corrigir
+        const appointments = await Appointment.findById(id);
 
-        const exams = await Exam.findById(id); // TODO corrigir
+        const exams = await Exam.findById(id); 
 
-        const checkIns = await CheckIn.findById(id); // TODO corrigir
+        const checkIns = await CheckIn.findById(id); 
+
+        console.log(checkIns);
+        console.log(appointments);
+        console.log(exams);
 
         const patientHistory = {
             appointments: appointments,
