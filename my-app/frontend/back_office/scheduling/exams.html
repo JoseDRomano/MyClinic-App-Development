@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Exams</title>
+    <style>
+        /* CSS for the page */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #53cbcb;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .exam-list {
+            margin-bottom: 20px;
+        }
+        .exam-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+        }
+        .new-exam-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #61d67d;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .new-exam-btn:hover {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <iframe src="/my-app/frontend/back_office/menu.html" frameborder="0" scrolling="no" width="100%"></iframe>
+</div>
+
+<div class="container">
+    <h2>Exams</h2>
+    <div class="exam-list" id="exam-list">
+        <!-- Populate this list dynamically with exams from your backend -->
+        <div class="exam-item">
+            <span>Exam 1 - Patient: Linda - Equipment: X-ray Machine - Date: 2024-05-25 10:00</span>
+            <button class="btn btn-danger btn-sm">Delete</button>
+        </div>
+        <div class="exam-item">
+            <span>Exam 2 - Patient: John - Equipment: MRI Scanner - Date: 2024-05-26 14:00</span>
+            <button class="btn btn-danger btn-sm">Delete</button>
+        </div>
+        <!-- Add more exams as needed -->
+    </div>
+</div>
+
+<button class="new-exam-btn" onclick="window.location.href='/my-app/frontend/back_office/scheduling/new_exam.html' ">+</button>
+
+</body>
+</html>

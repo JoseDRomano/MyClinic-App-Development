@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Inventory</title>
+    <style>
+        /* CSS for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 60px; /* to give space for the fixed buttons */
+        }
+        .inventory-table th, .inventory-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .inventory-table th {
+            background-color: #53cbcb;
+            color: white;
+        }
+        .inventory-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .inventory-table tr:hover {
+            background-color: #ddd;
+        }
+        .fixed-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .fixed-buttons button {
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a shadow for a raised effect */
+        }
+        .add-item-btn {
+            background-color: #61d67d;
+        }
+        .add-item-btn:hover {
+            background-color: #4dbd6e;
+        }
+        .update-item-btn {
+            background-color: #d8c944/* Yellow Background Color */
+        }
+        .update-item-btn:hover {
+            background-color: #c8bc14;
+        }
+        .delete-item-btn {
+            background-color: #d21111; /* Red Background Color */
+        }
+        .delete-item-btn:hover {
+            background-color: #a50d0d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <iframe src="menu.html" frameborder="0" scrolling="no" width="100%"></iframe>
+</div>
+
+<div class="container">
+    <h2>Inventory</h2>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="inventory-list">
+            <!-- Populate this list dynamically with items from your backend -->
+            <tr>
+                <td>1</td>
+                <td>Item 1</td>
+                <td>10</td>
+                <td>Category A</td>
+                <td>Location 1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Item 2</td>
+                <td>5</td>
+                <td>Category B</td>
+                <td>Location 2</td>
+            </tr>
+            <!-- Add more items as needed -->
+        </tbody>
+    </table>
+</div>
+
+<div class="fixed-buttons">
+    <button class="add-item-btn" onclick="window.location.href='add_item.html'"><i class="fas fa-plus"></i></button>
+    <button class="update-item-btn" onclick="window.location.href='update_item.html'"><i class="fas fa-pencil-alt"></i></button>
+    <button class="delete-item-btn" onclick="window.location.href='delete_item.html'"><i class="fas fa-times"></i></button>
+</div>
+
+</body>
+</html>

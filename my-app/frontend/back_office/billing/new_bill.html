@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Billing Processing</title>
+    <style>
+        /* CSS for the form */
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .add-service-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .add-service-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('entry_datetime').value = new Date().toISOString().slice(0, 16);
+
+            document.getElementById('id_card').addEventListener('change', function() {
+                var idCardNumber = this.value;
+                if (idCardNumber) {
+                    fetch('your_backend_endpoint/get_name_by_id?id=' + idCardNumber)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('name').value = data.name || '';
+                        })
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    document.getElementById('name').value = '';
+                }
+            });
+
+            document.getElementById('add-service-btn').addEventListener('click', function() {
+                addServiceField();
+            });
+
+            function addServiceField() {
+                var container = document.getElementById('services-container');
+                var serviceDiv = document.createElement('div');
+                serviceDiv.classList.add('form-group');
+                
+                var serviceLabel = document.createElement('label');
+                serviceLabel.textContent = 'Service Description';
+                serviceDiv.appendChild(serviceLabel);
+                
+                var serviceTextarea = document.createElement('textarea');
+                serviceTextarea.name = 'service_description[]';
+                serviceTextarea.rows = 3;
+                serviceTextarea.required = true;
+                serviceDiv.appendChild(serviceTextarea);
+
+                var amountLabel = document.createElement('label');
+                amountLabel.textContent = 'Amount';
+                serviceDiv.appendChild(amountLabel);
+                
+                var amountInput = document.createElement('input');
+                amountInput.type = 'number';
+                amountInput.step = '0.01';
+                amountInput.name = 'amount[]';
+                amountInput.required = true;
+                serviceDiv.appendChild(amountInput);
+
+                container.appendChild(serviceDiv);
+            }
+        });
+    </script>
+</head>
+<body>
+
+<div class="top-bar">
+    <iframe src="/my-app/frontend/back_office/menu.html" frameborder="0" scrolling="no" width="100%"></iframe>
+</div>
+
+<div class="form-container">
+    <h2>Billing Processing</h2>
+    <form action="your_backend_endpoint/generate_bill" method="POST">
+        <div class="form-group">
+            <label for="patient_name">Patient Name</label>
+            <input type="text" id="patient_name" name="patient_name" required>
+        </div>
+        <div class="form-group">
+            <label for="patient_id">Patient ID</label>
+            <input type="text" id="patient_id" name="patient_id" required>
+        </div>
+        <div id="services-container">
+            <div class="form-group">
+                <label for="service_description">Service Description</label>
+                <textarea id="service_description" name="service_description[]" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" step="0.01" id="amount" name="amount[]" required>
+            </div>
+        </div>
+        <button type="button" id="add-service-btn" class="add-service-btn">Add Service</button>
+        <div class="form-group">
+            <button type="submit">Generate Bill</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

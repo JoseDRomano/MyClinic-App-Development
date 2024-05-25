@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Register Patient</title>
+    <style>
+        /* CSS for the form */
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .inline-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        label[for="emergency_contact"] {
+         color: red;
+         }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <iframe src="/my-app/frontend/back_office/menu.html" frameborder="0" scrolling="no" width="100%" ></iframe>
+</div>
+
+<div class="form-container">
+    <h2>Register Patient</h2>
+    <form action="your_backend_endpoint" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Insert name here"required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" placeholder = "Insert address here" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Insert Patient's phone number here" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder = "Email contact here"required>
+        </div>
+        <div class="form-group">
+            <label for="emergency_contact">Emergency contact</label>
+            <div class="inline-form">
+                <label for="name_emergency">Name:</label>
+                <input type="text" id="name_emergency" name="name_emergency" placeholder="Insert name here" required>
+            </div>
+            <div class="inline-form">
+                <label for="phone">Phone Num:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Insert phone number here" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

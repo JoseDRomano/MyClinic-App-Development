@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Register Appointment</title>
+    <style>
+        /* CSS for the form */
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #53cbcb;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #61d67d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #28a745;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('appointment_datetime').value = new Date().toISOString().slice(0, 16);
+        });
+    </script>
+</head>
+<body>
+
+<div class="top-bar">
+    <iframe src="/my-app/frontend/back_office/menu.html" frameborder="0" scrolling="no" width="100%" ></iframe>
+</div>
+
+<div class="form-container">
+    <h2>Register Appointment</h2>
+    <form action="your_backend_endpoint" method="POST">
+        <div class="form-group">
+            <label for="patient_id">Patient ID</label>
+            <select id="patient_id" name="patient_id" required>
+                <!-- Populate this with options dynamically from your backend -->
+                <option value="123456">Linda</option>
+                <option value="234567">234567</option>
+                <option value="345678">345678</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="doctor_id">Doctor ID</label>
+            <select id="doctor_id" name="doctor_id" required>
+                <!-- Populate this with options dynamically from your backend -->
+                <option value="d123">Dr. Smith</option>
+                <option value="d456">Dr. Johnson</option>
+                <option value="d789">Dr. Williams</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="appointment_datetime">Date and Time of Appointment</label>
+            <input type="datetime-local" id="appointment_datetime" name="appointment_datetime" required readonly>
+            <script>
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    let datetime = document.getElementById('appointment_datetime').value;
+                    let date = new Date(datetime);
+                    date.setHours(date.getHours() + 2);
+                    document.getElementById('appointment_datetime').value = date.toISOString().substring(0,16);
+                });
+            </script>
+        </div>
+        <div class="form-group">
+            <label for="reason">Reason for Appointment</label>
+            <textarea id="reason" name="reason" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Register Appointment</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
