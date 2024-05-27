@@ -6,6 +6,69 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Billing Processing</title>
     <style>
+    /* CSS for the top bar */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .top-bar {
+            background-color: #008080;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+        }
+        .title {
+            margin-left: 15px;
+            margin-right: auto;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+        }
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+        }
+        .menu li {
+            margin-right: 20px;
+            position: relative;
+        }
+        .menu li:last-child {
+            margin-right: 0;
+        }
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #25a9a9;
+            padding: 10px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        .menu li:hover .submenu {
+            display: block;
+        }
+        .submenu a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        .submenu a:hover {
+            text-decoration: underline;
+        }
+
         /* CSS for the form */
         .form-container {
             max-width: 600px;
@@ -61,64 +124,58 @@
             background-color: #218838;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('entry_datetime').value = new Date().toISOString().slice(0, 16);
-
-            document.getElementById('id_card').addEventListener('change', function() {
-                var idCardNumber = this.value;
-                if (idCardNumber) {
-                    fetch('your_backend_endpoint/get_name_by_id?id=' + idCardNumber)
-                        .then(response => response.json())
-                        .then(data => {
-                            document.getElementById('name').value = data.name || '';
-                        })
-                        .catch(error => console.error('Error:', error));
-                } else {
-                    document.getElementById('name').value = '';
-                }
-            });
-
-            document.getElementById('add-service-btn').addEventListener('click', function() {
-                addServiceField();
-            });
-
-            function addServiceField() {
-                var container = document.getElementById('services-container');
-                var serviceDiv = document.createElement('div');
-                serviceDiv.classList.add('form-group');
-                
-                var serviceLabel = document.createElement('label');
-                serviceLabel.textContent = 'Service Description';
-                serviceDiv.appendChild(serviceLabel);
-                
-                var serviceTextarea = document.createElement('textarea');
-                serviceTextarea.name = 'service_description[]';
-                serviceTextarea.rows = 3;
-                serviceTextarea.required = true;
-                serviceDiv.appendChild(serviceTextarea);
-
-                var amountLabel = document.createElement('label');
-                amountLabel.textContent = 'Amount';
-                serviceDiv.appendChild(amountLabel);
-                
-                var amountInput = document.createElement('input');
-                amountInput.type = 'number';
-                amountInput.step = '0.01';
-                amountInput.name = 'amount[]';
-                amountInput.required = true;
-                serviceDiv.appendChild(amountInput);
-
-                container.appendChild(serviceDiv);
-            }
-        });
-    </script>
+    
 </head>
 <body>
 
+
 <div class="top-bar">
-    <iframe src="/my-app/frontend/back_office/menu.html" frameborder="0" scrolling="no" width="100%"></iframe>
+    <img src="/my-app/resources/logo.png" alt="Clinic Logo" class="logo">
+    <h1 class="title">MyClinic</h1>
+    <ul class="menu">
+        <li>
+            <a href="/my-app/frontend/home_backoffice.html">Home</a>
+        </li>
+        <li>
+            <a href="#">Registration</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/register/register_patient.html">Patient</a></li>
+                <li><a href="/my-app/frontend/back_office/register/register_staff.html">Staff</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Check In</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/check_in/new_check_in.html">New Entry</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Scheduling</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/scheduling/appointments.html">Appointments</a></li>
+                <li><a href="/my-app/frontend/back_office/scheduling/exams.html">Exam</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Records</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/medical_records.html">Medical records</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/my-app/frontend/back_office/inventory.html">Inventory</a>
+        </li>
+        <li>
+            <a href="#">Billing</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/billing/new_bill.html">New Bill</a></li>
+                <li><a href="/my-app/frontend/soon.html">View Bills</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
+
+
 
 <div class="form-container">
     <h2>Billing Processing</h2>
@@ -141,7 +198,10 @@
                 <input type="number" step="0.01" id="amount" name="amount[]" required>
             </div>
         </div>
-        <button type="button" id="add-service-btn" class="add-service-btn">Add Service</button>
+        <!--
+            Seria fixe adicionar isto para que pudessemos dentro da mesma fatura termos várias cenas que o patient gastou
+            <button type="button" id="add-service-btn" class="add-service-btn">Add Service</button> 
+        -->
         <div class="form-group">
             <button type="submit">Generate Bill</button>
         </div>

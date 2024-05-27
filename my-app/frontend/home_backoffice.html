@@ -5,13 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Staff Page</title>
-    
+    <style>
+        /* CSS for the top bar */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .top-bar {
+            background-color: #008080;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+        }
+        .title {
+            margin-left: 15px;
+            margin-right: auto;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+        }
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+        }
+        .menu li {
+            margin-right: 20px;
+            position: relative;
+        }
+        .menu li:last-child {
+            margin-right: 0;
+        }
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #25a9a9;
+            padding: 10px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        .menu li:hover .submenu {
+            display: block;
+        }
+        .submenu a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        .submenu a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
- <div class="top-bar">
-     <iframe src="/my-app/frontend/back_office/menu.html" margin= 0 frameborder="0" scrolling="no" width = 100% ></iframe>
+
+
+<div class="top-bar">
+    <img src="/my-app/resources/logo.png" alt="Clinic Logo" class="logo">
+    <h1 class="title">MyClinic</h1>
+    <ul class="menu">
+        <li>
+            <a href="/my-app/frontend/home_backoffice.html">Home</a>
+        </li>
+        <li>
+            <a href="#">Registration</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/register/register_patient.html">Patient</a></li>
+                <li><a href="/my-app/frontend/back_office/register/register_staff.html">Staff</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Check In</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/check_in/new_check_in.html">New Entry</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Scheduling</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/scheduling/appointments.html">Appointments</a></li>
+                <li><a href="/my-app/frontend/back_office/scheduling/exams.html">Exam</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Records</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/medical_records.html">Medical records</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/my-app/frontend/back_office/inventory.html">Inventory</a>
+        </li>
+        <li>
+            <a href="#">Billing</a>
+            <ul class="submenu">
+                <li><a href="/my-app/frontend/back_office/billing/new_bill.html">New Bill</a></li>
+                <li><a href="/my-app/frontend/soon.html">View Bills</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
+
 
 <!-- Your content goes here -->
 
