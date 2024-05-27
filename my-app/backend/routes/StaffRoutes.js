@@ -4,6 +4,21 @@ import { Staff } from '../models/StaffModel.js';
 
 const router = express.Router();
 
+const idGenerator = async (role) => {
+  
+    
+    if (role === 'medic') {
+        let medicCounter = await Staff.countDocuments({ job: 'medic' }).exec();
+        medicCounter += 1;
+        return `medic-${medicCounter}`;
+      } else if (role === 'nurse') {
+        let nurseCounter = await Staff.countDocuments({ job: 'nurse' }).exec();
+        nurseCounter += 1;
+        return `nurse-${nurseCounter}`;
+      }
+    
+  };
+
 router.get('/', async (request, response) => {
     try {
         const staff = await Staff.find(); 
@@ -17,7 +32,7 @@ router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const staff = await Staff.findById(id); 
+        const staff = await Staff.findOne({internalId: id}).exec(); 
 
         return response.status(200).json(staff);
     } catch (error) {
@@ -25,8 +40,13 @@ router.get('/:id', async (request, response) => {
     }
 });
 
+
+
 router.post('/', async (request, response) => {
     try {
+
+        const generatedId = await idGenerator(request.body.job);
+
         const newStaff = {
             name: request.body.name,
             joinDate: request.body.joinDate,
@@ -35,7 +55,7 @@ router.post('/', async (request, response) => {
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
-            healthId: request.body.healthId,
+            internalId: generatedId,
             sex: request.body.sex,
             gender: request.body.gender,
             birthDate: request.body.birthDate,
@@ -61,15 +81,15 @@ router.put('/:id', async (request, response) => {
             password: request.body.password,
             phoneNumber: request.body.phoneNumber,
             citizenId: request.body.citizenId,
-            healthId: request.body.healthId,
+            internalId: request.body.internalId,
             sex: request.body.sex,
             gender: request.body.gender,
             birthDate: request.body.birthDate,
             address: request.body.address
         }
         
-        const staff = await Staff.findByIdAndUpdate(request.params.id, newStaff);
-        return response.status(200).send(newStaff);
+        const staff = await Staff.findOneAndUpdate({internalId:request.params.id}, newStaff);
+        return response.status(200).send(staff);
 
     } catch (error) {
         console.log(error);
@@ -79,7 +99,7 @@ router.put('/:id', async (request, response) => {
 
 router.delete('/:id', async (request, response) => {
     try {
-        const staff = await Staff.findByIdAndDelete(request.params.id);
+        const staff = await Staff.findOneAndDelete({internalId:request.params.id}).exec();
         return response.status(200).send(staff);
 
     } catch (error) {

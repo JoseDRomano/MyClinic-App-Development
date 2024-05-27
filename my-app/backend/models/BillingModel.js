@@ -9,4 +9,4 @@ const billingSchema = mongoose.Schema(
     }
 );
 
-export const Bill = mongoose.model('Bill', billingSchema);
+export const Billing = mongoose.model('Bill', billingSchema);

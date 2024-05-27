@@ -75,6 +75,20 @@ router.delete('/:id', async (request, response) => {
 });
 
 //Fazer endpoint para confirmar o pagamento
-
+router.put("confirm/:id", async (request, response) => {
+    try {
+        console.log("Processing payment...");
+        const newItem = {
+            patient: request.body.patient,
+            services: request.body.services,
+            price: request.body.price,
+            payed: 'true'
+        }
+        const item = await Billing.findByIdAndUpdate(request.params.id, newItem);
+        return response.status(200).json(item);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 export default router;

@@ -9,7 +9,7 @@ const staffSchema = mongoose.Schema(
         password: {type: String, required: true},
         phoneNumber: {type: String, required: true},
         citizenId: {type: String, required: true},
-        healthId: {type: String, required: false},
+        internalId: {type: String, required: false},
         sex: {type: String, required: false},
         gender: {type: String, required: false},
         birthDate: {type: String, required: true},
