@@ -180,5 +180,50 @@
 
 <button class="new-appointment-btn" onclick="window.location.href='/my-app/frontend/back_office/scheduling/new_appointment.html'">+</button>
 
+<script>
+    const appTable = document.getElementById("appointment-list");
+
+    window.onload = function () {
+        getAppointments();
+    }
+
+    function getAppointments() {
+        let xhr = new XMLHttpRequest();
+
+        let url = "/appointment"
+
+        xhr.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(xhr.response);
+
+                const apps = response.body;
+
+                apps.forEach(function (appData) {
+                    const row = appTable.insertRow();
+
+                    const nameCell = row.insertCell();
+                    const staffIdCell = row.insertCell();
+                    const patientIdCell = row.insertCell();
+                    const dateCell = row.insertCell();
+                    const timeCell = row.insertCell();
+                    const locationCell = row.insertCell();
+                    const extraInfoCell = row.insertCell();
+
+                    nameCell.innerHTML = appData.name;
+                    staffIdCell.innerHTML = appData.staffId;
+                    patientIdCell.innerHTML = appData.patientId;
+                    dateCell.innerHTML = appData.date;
+                    timeCell.innerHTML = appData.time;
+                    locationCell.innerHTML = appData.location;
+                    extraInfoCell.innerHTML = appData.extraInfo;
+                });
+            }
+        }
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+    }
+</script>
+
 </body>
 </html>
