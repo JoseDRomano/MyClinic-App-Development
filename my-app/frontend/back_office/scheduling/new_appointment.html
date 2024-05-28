@@ -170,43 +170,36 @@
     
 <div class="form-container">
     <h2>Register Appointment</h2>
-    <form action="your_backend_endpoint" method="POST">
+    <form action="/appointment" method="POST">
         <div class="form-group">
-            <label for="patient_id">Patient ID</label>
-            <select id="patient_id" name="patient_id" required>
-                <!-- Populate this with options dynamically from your backend -->
-                <option value="123456">Linda</option>
-                <option value="234567">234567</option>
-                <option value="345678">345678</option>
-                <!-- Add more options as needed -->
-            </select>
+            <label for="name">Name of Appointment</label>
+            <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label for="doctor_id">Doctor ID</label>
-            <select id="doctor_id" name="doctor_id" required>
-                <!-- Populate this with options dynamically from your backend -->
-                <option value="d123">Dr. Smith</option>
-                <option value="d456">Dr. Johnson</option>
-                <option value="d789">Dr. Williams</option>
-                <!-- Add more options as needed -->
-            </select>
+            <label for="staffId">Staff Responsible</label>
+            <input type="text" id="staffId" name="staffId" required>
         </div>
         <div class="form-group">
-            <label for="appointment_datetime">Date and Time of Appointment</label>
-            <input type="datetime-local" id="appointment_datetime" name="appointment_datetime" required readonly>
-            <script>
-                document.addEventListener('DOMContentLoaded', (event) => {
-                    let datetime = document.getElementById('appointment_datetime').value;
-                    let date = new Date(datetime);
-                    date.setHours(date.getHours() + 2);
-                    document.getElementById('appointment_datetime').value = date.toISOString().substring(0,16);
-                });
-            </script>
+            <label for="patientId">Patient Identification</label>
+            <input type="text" id="patientId" name="patientId" required>
         </div>
         <div class="form-group">
-            <label for="reason">Reason for Appointment</label>
-            <textarea id="reason" name="reason" rows="3" required></textarea>
+            <label for="date">Date of Appointment</label>
+            <input type="date" id="date" name="date" required>
         </div>
+        <div class="form-group">
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="extraInfo">Observations</label>
+            <input type="text" id="extraInfo" name="extraInfo" required>
+        </div>
+
         <div class="form-group">
             <button type="submit">Register Appointment</button>
         </div>
