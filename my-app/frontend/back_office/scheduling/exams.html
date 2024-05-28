@@ -180,5 +180,54 @@
 
 <button class="new-exam-btn" onclick="window.location.href='/my-app/frontend/back_office/scheduling/new_exam.html' ">+</button>
 
+    <script>
+        const examTable = document.getElementById("exam-list");
+
+        window.onload = function () {
+            getExams();
+        }
+
+        function getExams() {
+            let xhr = new XMLHttpRequest();
+
+            let url = "/exam"
+
+            xhr.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(xhr.response);
+
+                    const exams = response.body;
+
+                    exams.forEach(function (examData) {
+                        const row = examData.insertRow();
+
+                        const nameCell = row.insertCell();
+                        const staffIdCell = row.insertCell();
+                        const patientIdCell = row.insertCell();
+                        const equipmentIdsCell = row.insertCell();
+                        const dateCell = row.insertCell();
+                        const timeCell = row.insertCell();
+                        const locationCell = row.insertCell();
+                        const extraInfoCell = row.insertCell();
+
+                        nameCell.innerHTML = examData.name;
+                        staffIdCell.innerHTML = examData.staffId;
+                        patientIdCell.innerHTML = examData.patientId;
+                        examData.equipmentIds.forEach( function (eqData) {
+                            equipmentIdsCell.append(eqData.data);
+                        });
+                        dateCell.innerHTML = examData.date;
+                        timeCell.innerHTML = examData.time;
+                        locationCell.innerHTML = examData.location;
+                        extraInfoCell.innerHTML = examData.extraInfo;
+                    });
+                }
+            }
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        }
+    </script>
+
 </body>
 </html>
