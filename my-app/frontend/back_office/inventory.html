@@ -211,22 +211,7 @@
             </tr>
         </thead>
         <tbody id="inventory-list">
-            <!-- Populate this list dynamically with items from your backend -->
-            <tr>
-                <td>1</td>
-                <td>Item 1</td>
-                <td>10</td>
-                <td>Category A</td>
-                <td>Location 1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Item 2</td>
-                <td>5</td>
-                <td>Category B</td>
-                <td>Location 2</td>
-            </tr>
-            <!-- Add more items as needed -->
+
         </tbody>
     </table>
 </div>
@@ -234,6 +219,43 @@
 <div class="fixed-buttons">
     <button class="add-item-btn" onclick="window.location.href='add_item.html'"><i class="fas fa-plus"></i></button>
 </div>
+
+<script>
+    const invTable = document.getElementById("inventory-list");
+
+    window.onload = function () {
+        getInventory();
+    }
+
+    function getInventory() {
+        let xhr = new XMLHttpRequest();
+
+        let url = "/equipment"
+
+        xhr.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(xhr.response);
+
+                const equipments = response.body;
+
+                equipments.forEach(function (eqData) {
+                    const row = invTable.insertRow();
+
+                    const nameCell = row.insertCell();
+                    const lastMaintenanceCell = row.insertCell();
+                    const availabilityCell = row.insertCell();
+
+                    nameCell.innerHTML = eqData.name;
+                    lastMaintenanceCell.innerHTML = eqData.lastMaintenance;
+                    availabilityCell.innerHTML = eqData.availability;
+                });
+            }
+        }
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+    }
+</script>
 
 </body>
 </html>
