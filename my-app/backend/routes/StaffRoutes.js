@@ -7,15 +7,31 @@ const router = express.Router();
 const idGenerator = async (role) => {
   
     
-    if (role === 'medic') {
-        let medicCounter = await Staff.countDocuments({ job: 'medic' }).exec();
-        medicCounter += 1;
-        return `medic-${medicCounter}`;
-      } else if (role === 'nurse') {
-        let nurseCounter = await Staff.countDocuments({ job: 'nurse' }).exec();
-        nurseCounter += 1;
-        return `nurse-${nurseCounter}`;
-      }
+    if (role === 'Medic') {
+        let counter = await Staff.countDocuments({ job: 'Medic' }).exec();
+        counter += 1;
+        return `medic-${counter}`;
+      } else if (role === 'Nurse') {
+        let counter = await Staff.countDocuments({ job: 'Nurse' }).exec();
+        counter += 1;
+        return `nurse-${counter}`;
+      } else if (role === 'Receptionist') {
+        let counter = await Staff.countDocuments({ job: 'Receptionist' }).exec();
+        counter += 1;
+        return `receptionist-${counter}`;
+      } else if (role === 'Technician') {
+        let counter = await Staff.countDocuments({ job: 'Technician' }).exec();
+        counter += 1;
+        return `technician-${counter}`;
+      } else if (role === 'Manager') {
+        let counter = await Staff.countDocuments({ job: 'Manager' }).exec();
+        counter += 1;
+        return `manager-${counter}`;
+      } else if (role === 'Janitor') {
+        let counter = await Staff.countDocuments({ job: 'Janitor' }).exec();
+        counter += 1;
+        return `janitor-${counter}`;
+      } 
     
   };
 
