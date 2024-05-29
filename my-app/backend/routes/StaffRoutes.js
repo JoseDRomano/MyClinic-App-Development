@@ -27,10 +27,10 @@ const idGenerator = async (role) => {
         let counter = await Staff.countDocuments({ job: 'Manager' }).exec();
         counter += 1;
         return `manager-${counter}`;
-      } else if (role === 'Janitor') {
-        let counter = await Staff.countDocuments({ job: 'Janitor' }).exec();
+      } else if (role === 'Pharmacist') {
+        let counter = await Staff.countDocuments({ job: 'Pharmacist' }).exec();
         counter += 1;
-        return `janitor-${counter}`;
+        return `pharmacist-${counter}`;
       } 
     
   };
