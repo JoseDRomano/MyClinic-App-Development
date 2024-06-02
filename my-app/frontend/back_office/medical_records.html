@@ -164,8 +164,8 @@
     <h2>Medical Records</h2>
     <form id="medical-records-form">
         <div class="form-group">
-            <label for="patient_id">Select Patient</label>
-            <select id="patient_id" name="patient_id" required>
+            <label for="patientId">Select Patient</label>
+            <select id="patientId" name="patientId" required>
                 <!-- Populate this with options dynamically from your backend -->
                 <option value="123456">Linda</option>
                 <option value="234567">John</option>
@@ -181,8 +181,8 @@
 
 <script>
     function getMedicalHistory() {
-        const patientId = document.getElementById('patient_id').value;
-        window.location.href = `medical_history.html?patient_id=${patientId}`;
+        const patientId = document.getElementById('patientId').value;
+        window.location.href = `medical_history.html?patientId=${patientId}`;
     }
 </script>
 

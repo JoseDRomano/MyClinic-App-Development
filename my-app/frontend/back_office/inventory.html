@@ -88,25 +88,20 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .inventory-table {
+        .table.rounded-corners thead, .table.rounded-corners th {
+            border: 1px solid rgb(255, 255, 255);
+        }
+        .table.rounded-corners {
+            border-spacing: 0;
+            border-collapse: separate;
+            border-radius: 15px;
+            border-color:white;
+            overflow: hidden;
+        }
+        .table {
+            word-wrap: break-word;
+            table-layout: fixed;
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 60px; /* to give space for the fixed buttons */
-        }
-        .inventory-table th, .inventory-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .inventory-table th {
-            background-color: #53cbcb;
-            color: white;
-        }
-        .inventory-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .inventory-table tr:hover {
-            background-color: #ddd;
         }
         .fixed-buttons {
             position: fixed;
@@ -200,19 +195,12 @@
 
 <div class="container">
     <h2>Inventory</h2>
-    <table class="inventory-table">
+    <table class="table rounded-corners table-bordered table-hover" id="inventory-list">
         <thead>
-            <tr>
-                <th>Item ID</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Category</th>
-                <th>Location</th>
-            </tr>
+            <th>Name</th>
+            <th>Last Maintenance</th>
+            <th>Availability</th>
         </thead>
-        <tbody id="inventory-list">
-
-        </tbody>
     </table>
 </div>
 
@@ -230,24 +218,38 @@
     function getInventory() {
         let xhr = new XMLHttpRequest();
 
-        let url = "/equipment"
+        let url = "http://localhost:5555/equipment"
+
+        let body = document.createElement("tbody");
+
+        invTable.appendChild(body);
 
         xhr.onreadystatechange = function () {
             if(this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.response);
 
-                const equipments = response.body;
+                const equipments = response;
 
                 equipments.forEach(function (eqData) {
-                    const row = invTable.insertRow();
+                    const row = invTable.getElementsByTagName("tbody")[0].insertRow();
 
                     const nameCell = row.insertCell();
                     const lastMaintenanceCell = row.insertCell();
                     const availabilityCell = row.insertCell();
 
+                    const actionsCell = row.insertCell();
+
                     nameCell.innerHTML = eqData.name;
                     lastMaintenanceCell.innerHTML = eqData.lastMaintenance;
                     availabilityCell.innerHTML = eqData.availability;
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.innerHTML = "Delete";
+                    deleteButton.className = "btn btn-danger";
+                    deleteButton.onclick = function() {
+                        deleteE(eqData.name);
+                    };
+                    actionsCell.appendChild(deleteButton);
                 });
             }
         }
@@ -255,6 +257,26 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
     }
+
+    function deleteE(id) {
+        let xhr = new XMLHttpRequest();
+
+        let url = "http://localhost:5555/equipment/" + id;
+
+        xhr.onreadystatechange = function () {
+            if(xhr.status === 200){
+
+                alert("Deleted successfully.");
+                window.location.reload();
+
+            }
+        }
+
+        xhr.open("DELETE", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+    }
+
 </script>
 
 </body>

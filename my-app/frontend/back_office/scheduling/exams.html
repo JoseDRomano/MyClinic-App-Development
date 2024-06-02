@@ -71,7 +71,7 @@
 
         /* CSS for the page */
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -82,14 +82,20 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .exam-list {
-            margin-bottom: 20px;
+        .table.rounded-corners thead, .table.rounded-corners th {
+            border: 1px solid rgb(255, 255, 255);
         }
-        .exam-item {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            justify-content: space-between;
+        .table.rounded-corners {
+            border-spacing: 0;
+            border-collapse: separate;
+            border-radius: 15px;
+            border-color:white;
+            overflow: hidden;
+        }
+        .table {
+            word-wrap: break-word;
+            table-layout: fixed;
+            width: 100%;
         }
         .new-exam-btn {
             position: fixed;
@@ -164,18 +170,18 @@
 
 <div class="container">
     <h2>Exams</h2>
-    <div class="exam-list" id="exam-list">
-        <!-- Populate this list dynamically with exams from your backend -->
-        <div class="exam-item">
-            <span>Exam 1 - Patient: Linda - Equipment: X-ray Machine - Date: 2024-05-25 10:00</span>
-            <button class="btn btn-danger btn-sm">Delete</button>
-        </div>
-        <div class="exam-item">
-            <span>Exam 2 - Patient: John - Equipment: MRI Scanner - Date: 2024-05-26 14:00</span>
-            <button class="btn btn-danger btn-sm">Delete</button>
-        </div>
-        <!-- Add more exams as needed -->
-    </div>
+    <table class="table rounded-corners table-bordered table-hover" id="exam-list">
+        <thead>
+            <th>Name</th>
+            <th>Staff</th>
+            <th>Patient</th>
+            <th>Equipment</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Observations</th>
+        </thead>
+    </table>
 </div>
 
 <button class="new-exam-btn" onclick="window.location.href='/my-app/frontend/back_office/scheduling/new_exam.html' ">+</button>
@@ -190,16 +196,20 @@
         function getExams() {
             let xhr = new XMLHttpRequest();
 
-            let url = "/exam"
+            let url = "http://localhost:5555/exam";
+
+            let body = document.createElement("tbody");
+
+            examTable.appendChild(body);
 
             xhr.onreadystatechange = function () {
-                if(this.readyState == 4 && this.status == 200) {
+                if(this.readyState === 4 && this.status === 200) {
                     let response = JSON.parse(xhr.response);
 
-                    const exams = response.body;
+                    const exams = response;
 
                     exams.forEach(function (examData) {
-                        const row = examData.insertRow();
+                        const row = examTable.getElementsByTagName("tbody")[0].insertRow();
 
                         const nameCell = row.insertCell();
                         const staffIdCell = row.insertCell();
@@ -210,16 +220,26 @@
                         const locationCell = row.insertCell();
                         const extraInfoCell = row.insertCell();
 
+                        const actionsCell = row.insertCell();
+
                         nameCell.innerHTML = examData.name;
                         staffIdCell.innerHTML = examData.staffId;
                         patientIdCell.innerHTML = examData.patientId;
                         examData.equipmentIds.forEach( function (eqData) {
-                            equipmentIdsCell.append(eqData.data);
+                            equipmentIdsCell.append(eqData);
                         });
                         dateCell.innerHTML = examData.date;
                         timeCell.innerHTML = examData.time;
                         locationCell.innerHTML = examData.location;
                         extraInfoCell.innerHTML = examData.extraInfo;
+
+                        const deleteButton = document.createElement("button");
+                        deleteButton.innerHTML = "Delete";
+                        deleteButton.className = "btn btn-danger";
+                        deleteButton.onclick = function() {
+                            deleteE(examData.name);
+                        };
+                        actionsCell.appendChild(deleteButton);
                     });
                 }
             }
@@ -227,6 +247,26 @@
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send();
         }
+
+        function deleteE(id) {
+            let xhr = new XMLHttpRequest();
+
+            let url = "http://localhost:5555/exam/" + id;
+
+            xhr.onreadystatechange = function () {
+                if(xhr.status === 200){
+
+                    alert("Deleted successfully.");
+                    window.location.reload();
+
+                }
+            }
+
+            xhr.open("DELETE", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        }
+
     </script>
 
 </body>

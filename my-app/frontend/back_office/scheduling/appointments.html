@@ -71,7 +71,7 @@
 }
         /* CSS for the page */
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -80,16 +80,22 @@
         }
         .container h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 100px;
         }
-        .appointment-list {
-            margin-bottom: 20px;
+        .table.rounded-corners thead, .table.rounded-corners th {
+            border: 1px solid rgb(255, 255, 255);
         }
-        .appointment-item {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            justify-content: space-between;
+        .table.rounded-corners {
+            border-spacing: 0;
+            border-collapse: separate;
+            border-radius: 15px;
+            border-color:white;
+            overflow: hidden;
+        }
+        .table {
+            word-wrap: break-word;
+            table-layout: fixed;
+            width: 100%;
         }
         .new-appointment-btn {
             position: fixed;
@@ -164,18 +170,17 @@
 
 <div class="container">
     <h2>Appointments</h2>
-    <div class="appointment-list" id="appointment-list">
-       <!-- &lt;!&ndash; Populate this list dynamically with appointments from your backend &ndash;&gt;
-        <div class="appointment-item">
-            <span>Appointment 1 - Patient: Linda - Doctor: Dr. Smith - Date: 2024-05-25 10:00</span>
-            <button class="btn btn-danger btn-sm">Delete</button>
-        </div>
-        <div class="appointment-item">
-            <span>Appointment 2 - Patient: John - Doctor: Dr. Johnson - Date: 2024-05-26 14:00</span>
-            <button class="btn btn-danger btn-sm">Delete</button>
-        </div>-->
-        <!-- Add more appointments as needed -->
-    </div>
+    <table class="table rounded-corners table-bordered table-hover" id="appointment-list">
+        <thead>
+            <th>Name</th>
+            <th>Staff</th>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Observations</th>
+        </thead>
+    </table>
 </div>
 
 <button class="new-appointment-btn" onclick="window.location.href='/my-app/frontend/back_office/scheduling/new_appointment.html'">+</button>
@@ -190,16 +195,20 @@
     function getAppointments() {
         let xhr = new XMLHttpRequest();
 
-        let url = "/appointment"
+        let url = "http://localhost:5555/appointment"
+
+        let body = document.createElement("tbody");
+
+        appTable.appendChild(body);
 
         xhr.onreadystatechange = function () {
-            if(this.readyState == 4 && this.status == 200) {
+            if(this.readyState === 4 && this.status === 200) {
                 let response = JSON.parse(xhr.response);
 
-                const apps = response.body;
+                const apps = response;
 
                 apps.forEach(function (appData) {
-                    const row = appTable.insertRow();
+                    const row = appTable.getElementsByTagName("tbody")[0].insertRow();
 
                     const nameCell = row.insertCell();
                     const staffIdCell = row.insertCell();
@@ -209,6 +218,8 @@
                     const locationCell = row.insertCell();
                     const extraInfoCell = row.insertCell();
 
+                    const actionsCell = row.insertCell();
+
                     nameCell.innerHTML = appData.name;
                     staffIdCell.innerHTML = appData.staffId;
                     patientIdCell.innerHTML = appData.patientId;
@@ -216,6 +227,14 @@
                     timeCell.innerHTML = appData.time;
                     locationCell.innerHTML = appData.location;
                     extraInfoCell.innerHTML = appData.extraInfo;
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.innerHTML = "Delete";
+                    deleteButton.className = "btn btn-danger";
+                    deleteButton.onclick = function() {
+                        deleteE(appData.name);
+                    };
+                    actionsCell.appendChild(deleteButton);
                 });
             }
         }
@@ -223,6 +242,26 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
     }
+
+    function deleteA(id) {
+        let xhr = new XMLHttpRequest();
+
+        let url = "http://localhost:5555/appointment/" + id;
+
+        xhr.onreadystatechange = function () {
+            if(xhr.status === 200){
+
+                alert("Deleted successfully.");
+                window.location.reload();
+
+            }
+        }
+
+        xhr.open("DELETE", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+    }
+
 </script>
 
 </body>
