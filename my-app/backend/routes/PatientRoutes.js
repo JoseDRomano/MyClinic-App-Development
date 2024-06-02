@@ -9,13 +9,21 @@ import { CheckIn } from '../models/CheckInModel.js';
 const router = express.Router();
 
 // get patient history (appointments, exams, check-ins)
-router.get('/:id/history', async (request, response) => {
+
+router.get('/history/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const appointments = await Appointment.where('patientId').eq(id).exec();
-        const exams = await Exam.where('patientId').eq(id).exec(); 
-        const checkIns = await CheckIn.where('patientId').eq(id).exec(); 
+        const appointments = await Appointment.find({patientId: id}).exec();
+
+        const exams = await Exam.find({patientId: id}).exec();
+
+        const checkIns = await CheckIn.find({healthId: id}).exec();
+
+        console.log(checkIns);
+        console.log(appointments);
+        console.log(exams);
+
 
         const patientHistory = {
             appointments: appointments,
@@ -42,7 +50,7 @@ router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params; 
 
-        const patient = await Patient.findById(id); 
+        const patient = await Patient.findOne({healthId:id}).exec(); 
 
         return response.status(200).json(patient);
     } catch (error) {
@@ -89,7 +97,7 @@ router.put('/:id', async (request, response) => {
             address: request.body.address
         }
         
-        const patient = await Patient.findByIdAndUpdate(request.params.id, newPatient);
+        const patient = await Patient.findOneAndUpdate({healthId: request.params.id}, newPatient).exec();
         return response.status(200).send(newPatient);
 
     } catch (error) {
@@ -100,7 +108,7 @@ router.put('/:id', async (request, response) => {
 
 router.delete('/:id', async (request, response) => {
     try {
-        const patient = await Patient.findByIdAndDelete(request.params.id);
+        const patient = await Patient.findOneAndDelete({healthId: request.params.id}).exec();
         return response.status(200).send(patient);
 
     } catch (error) {

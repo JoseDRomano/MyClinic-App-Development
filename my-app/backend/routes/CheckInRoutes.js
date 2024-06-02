@@ -1,4 +1,5 @@
 
+
 import express from 'express';
 import { CheckIn } from '../models/CheckInModel.js';
 
@@ -77,6 +78,7 @@ router.delete('/:id', async (request, response) => {
     } catch (error) {
         console.log(error);
         response.status(500).send('Error: ' + error);
+
     }
 });
 
