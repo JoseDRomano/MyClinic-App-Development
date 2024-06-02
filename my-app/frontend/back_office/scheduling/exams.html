@@ -226,7 +226,7 @@
                         staffIdCell.innerHTML = examData.staffId;
                         patientIdCell.innerHTML = examData.patientId;
                         examData.equipmentIds.forEach( function (eqData) {
-                            equipmentIdsCell.append(eqData);
+                            equipmentIdsCell.append("👉".concat(eqData));
                         });
                         dateCell.innerHTML = examData.date;
                         timeCell.innerHTML = examData.time;
